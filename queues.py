@@ -50,3 +50,26 @@ def is_feasible(lamda, mu, c = 1):
     :return: True if rho is feasible False if rho is not feasible
     """
 
+def calc_p0(lamda, mu, c=1):
+    """
+    Calculates the probability that there is no one in the system (empty system).
+    There are two different calculations depending on queue type.
+    For single server queues, p0 = 1 - rho.
+    For multi-server queues, p0 = ∑((r^n/n!) + (r^c/(c!*(1-rho))))
+    :param lamda: arrival rate of customers (per time interval)
+    :param mu: service rate (per time interval)
+    :param c: number of servers in the system
+    :return: Probability of an empty queue
+    """
+
+def calc_lq_mmc(lamda, mu, c=1):
+    """
+    Calculates the Lq, or average number of people waiting in the queue, for an M/M/C type
+    queue. There are two different calculations depending on queue type.
+    For single server queues, Lq = lamda^2/(mu*(mu-lamda))
+    For multi-server queues, Lq = r^c*rho/(c!*(1-rho)^2)*p0
+    :param lamda: arrival rate of customers (per time interval)
+    :param mu: service rate (per time interval)
+    :param c: number of servers in the system
+    :return: average number of people waiting in the queue
+    """
