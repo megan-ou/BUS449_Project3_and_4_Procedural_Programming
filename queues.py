@@ -1,4 +1,5 @@
 import math
+from toolz import isiterable
 #queues.py
 #Calculates the average number of people in queue (L_q) for an M/M/C queue
 #@Author Megan Ou, Toby Okoji
@@ -38,6 +39,32 @@ def is_valid(lamda, mu, c = 1):
     :param c: number of servers in the system
     :return: True if all arguments are valid, False if any argument is invalid
     """
+    if not isiterable(lamda):
+        lamda = (lamda,)
+
+    if not all([isinstance(lamda[i],Number) for i in range(len(lamda))]):
+        return False
+
+    if not all([lamda[i]>0 for i in range(len(lamda))]):
+        return False
+
+    #Check to see if mu is a number
+    if not isinstance(mu, (int, float)):
+        return False
+
+    #Check to see if c is a number
+    if not isinstance(c, (int, float)):
+        return False
+
+    if mu < 0:
+        return False
+
+    if c < 0:
+        return False
+    else:
+        return True
+
+
 
 def is_feasible(lamda, mu, c = 1):
     """
@@ -49,6 +76,28 @@ def is_feasible(lamda, mu, c = 1):
     :param c: number of servers in the system
     :return: True if rho is feasible False if rho is not feasible
     """
+
+    if not is_valid(lamda, mu, c):
+        return False
+
+    lamda_calc = 0
+
+    if isiterable(lamda):
+        lamda_calc = math.sum(lamda)
+    else:
+        lamda_calc = lamda
+
+    rho = 0
+    rho = lamda/(c * mu)
+
+    if rho <= 0:
+        return False
+
+    if rho > 1:
+        return False
+    else:
+        return True
+
 
 def calc_p0(lamda, mu, c=1):
     """
