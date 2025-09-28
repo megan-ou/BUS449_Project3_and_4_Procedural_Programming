@@ -1,34 +1,10 @@
 import math
 from toolz import isiterable
+from numbers import Number
 #queues.py
 #Calculates the average number of people in queue (L_q) for an M/M/C queue
 #@Author Megan Ou, Toby Okoji
 #@Version September 2025
-
-def factorial(x):
-    """
-    Helper method for calculating a factorial. Taken from code we wrote
-    in Project 1. Takes an integer and recursively calculates the factorial.
-    Factorial is defined as x! = x(x-1)(x-2)⋯1
-    :param x: integer where factorial starts
-    :return: integer solution
-    """
-    # Error Checking: x is a positive integer less than 1000
-    if not isinstance(x, int):
-        return -math.inf
-    if x < 0:
-        return math.nan
-
-    if x > 1000:
-        return math.inf
-
-    # Recursive base case, factorial of 0 will always be 1
-    # This is how we check to see if we are at the end of our factorial
-    if x == 0:
-        return 1;
-    # Recursively call factorial function on (x-1)
-    else:
-        return x * factorial(x - 1)
 
 def is_valid(lamda, mu, c = 1):
     """
@@ -80,15 +56,15 @@ def is_feasible(lamda, mu, c = 1):
     if not is_valid(lamda, mu, c):
         return False
 
-    lamda_calc = 0
+    lamda_sum = 0
 
     if isiterable(lamda):
-        lamda_calc = math.sum(lamda)
+        lamda_sum = sum(lamda)
     else:
-        lamda_calc = lamda
+        lamda_sum = lamda
 
     rho = 0
-    rho = lamda/(c * mu)
+    rho = lamda_sum/(c * mu)
 
     if rho <= 0:
         return False
@@ -104,12 +80,45 @@ def calc_p0(lamda, mu, c=1):
     Calculates the probability that there is no one in the system (empty system).
     There are two different calculations depending on queue type.
     For single server queues, p0 = 1 - rho.
-    For multi-server queues, p0 = ∑((r^n/n!) + (r^c/(c!*(1-rho))))
+    For multi-server queues, p0 = ( ∑((r^n/n!)) + r^c/(c!*(1-rho)) ) ** -1
     :param lamda: arrival rate of customers (per time interval)
     :param mu: service rate (per time interval)
     :param c: number of servers in the system
     :return: Probability of an empty queue
     """
+    #check to see if lamda, mu, and c are numerical scalars and within a valid range
+    if not is_valid(lamda,mu,c):
+        return math.nan
+
+    #check to see if rho is within feasible range
+    if not is_feasible(lamda, mu, c):
+        return math.inf
+
+    #calculate r, the expected number of people in service
+    r = lamda / mu
+
+    #calculate rho, the traffic intensity
+    rho = r / c
+
+    p0 = 0
+
+    #Single server queue calculation
+    if c == 1:
+        p0 = 1 - rho
+
+    #Multi server queue calculation
+    else:
+        #Split the equation into three different parts
+        #Calculate the 1st term (summation) in the p0 equation
+        for n in range (c):
+            p0 += ((r ** n) / (math.factorial(n)))
+        #Calculate the 2nd term in the p0 equation
+        p0 += ((r^c) / (math.factorial(c) * (1 -rho)))
+        #Raise the entire equation to the -1 power
+        p0 = (p0) ** (-1)
+
+    return p0
+
 
 def calc_lq_mmc(lamda, mu, c=1):
     """
@@ -122,3 +131,27 @@ def calc_lq_mmc(lamda, mu, c=1):
     :param c: number of servers in the system
     :return: average number of people waiting in the queue
     """
+    #check to see if lamda, mu, and c are numerical scalars and within a valid range
+    if not is_valid(lamda, mu, c):
+        return math.nan
+
+    #check to see if rho is within feasible range
+    if not is_feasible(lamda, mu, c):
+        return math.inf
+
+    #Initialize variables for calculating Lq
+    lq = 0
+    r = lamda / mu
+    rho = r / c
+    p0 = calc_p0(lamda, mu, c)
+
+    #Single server queue calculation
+    if c == 1:
+        lq = (lamda ** 2) / (mu * (mu - lamda))
+
+    #Multi server queue calculation
+    else:
+        lq = (r ** c) * rho / (math.factorial(c) * ((1 - rho) ** 2)) * p0
+
+    return lq
+
