@@ -1,3 +1,6 @@
+from dask.array import isclose
+import math
+
 import queues as q
 
 #queues_tests.py
@@ -26,6 +29,7 @@ def tests_is_valid():
         print("Invalid test for valid input, multiple lamda: Failed")
 
     #Check from invalid inputs
+    #Check for non-numerical inputs for lamda, m, and c
     expected = False
     actual = q.is_valid("45", 30, 1)
     if expected == actual:
@@ -45,6 +49,7 @@ def tests_is_valid():
     else:
         print("Invalid test for non numerical c: Failed")
 
+    #Teset for negative and out of range values
     actual = q.is_valid((3,2,-10), 7, 1)
     if expected == actual:
         print("Valid test for negative lamda: Passed")
@@ -66,7 +71,84 @@ def tests_is_valid():
 def tests_is_feasible():
     """
     Test to see if is_feasible() is working correctly
-    :return:
     """
 
+def tests_calc_p0():
+    """
+    Test to see if calc_p0 is working correctly
+    """
+    #Test for valid inputs
+    #Single server tests
+    # Single lamda
+    expected = 0.16666666666666663
+    actual = q.calc_p0(10, 12, 1)
+    if isclose(expected, actual):
+        print("Valid test for valid input, single server & single lamda: Passed")
+    else:
+        print("Invalid test for valid input, single server & single lamda: Failed")
+
+    # Multiple lamda
+    actual = q.calc_p0((3, 2, 5), 12, 1)
+    if isclose(expected, actual):
+        print("Valid test for valid input, single server & multiple lamda: Passed")
+    else:
+        print("Invalid test for valid input, single server & multiple lamda: Failed")
+    #Multi server tests
+    #Single lamda
+    expected = 0.17647058823529413
+    actual = q.calc_p0(35,25,2)
+    if isclose(expected,actual):
+        print("Valid test for valid input, multi server & single lamda: Passed")
+    else:
+        print("Invalid test for valid input, multi server & single lamda: Failed")
+
+    #Multiple lamda
+    actual = q.calc_p0((10,11,14),25,2)
+    if isclose(expected,actual):
+        print("Valid test for valid input, multi server & multiple lamda: Passed")
+    else:
+        print("Invalid test for valid input, multi server & multiple lamda: Failed")
+
+    #Test for invalid cases
+    #Invalid values, just to ensure that is_valid is called in is_feasible
+    actual = q.calc_p0(-10,-12,1)
+    if math.isnan(actual):
+        print("Valid test for invalid input: Passed")
+    else:
+        print("Invalid test for invalid input: Failed")
+
+    #Valid values but infeasible rho
+    expected = math.inf
+    actual = q.calc_p0(10,2,1)
+    if isclose(expected,actual):
+        print("Valid test for infeasible input: Passed")
+    else:
+        print("Invalid test for infeasible input: Failed")
+
+def tests_calc_lq_mmc():
+    """
+    Test to see if calc_lq_mmc() is working correctly
+    """
+    # Test for valid inputs
+    # Single lamda
+    expected = 4.166666666666668
+    actual = q.calc_lq_mmc(10, 12, 1)
+    if isclose(expected, actual):
+        print("Valid test for valid input, single lamda: Passed")
+    else:
+        print("Invalid test for valid input, single lamda: Failed")
+
+    # Multiple lamda
+    actual = q.calc_lq_mmc((2, 3, 5), 12, 1)
+    if isclose(expected, actual):
+        print("Valid test for valid input, multiple lamda: Passed")
+    else:
+        print("Invalid test for valid input, multiple lamda: Failed")
+
+    #Invalid cases
+
+
 tests_is_valid()
+tests_is_feasible()
+tests_calc_p0()
+tests_calc_lq_mmc()
