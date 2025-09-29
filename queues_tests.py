@@ -79,7 +79,7 @@ def tests_is_feasible():
     else:
         print("Invalid test for lamda, mu, c: Failed")
 
-    expected = True
+    #Double value for lamda
     actual = q.is_feasible(10.3, 12, 1)
     if actual == expected:
         print("Valid test for int lamda, mu, c: Passed")
@@ -87,7 +87,6 @@ def tests_is_feasible():
         print("Invalid test for int lamda, mu, c: Failed")
 
     # Lamda is iterable
-    expected = True
     actual = q.is_feasible((10, 5), 20, 1)
     if expected == actual:
         print("Valid test for sum lamda: Passed")
@@ -95,13 +94,21 @@ def tests_is_feasible():
         print("Invalid test for sum lamda: Failed")
 
     # int in lamda
-    expected = True
     actual = q.is_feasible((10.3, 5), 20, 1)
     if expected == actual:
         print("Valid test for int sum lamda: Passed")
     else:
         print("Invalid test for int sum lamda: Failed")
 
+    # rho calculation
+    expected = True
+    actual = q.is_feasible(10, 11, 1)
+    if expected == actual:
+        print("Valid test for valid rho calculation: Passed")
+    else:
+        print("Invalid test for valid rho calculation: Failed")
+
+    #Test for invlaid cases
     # String in lamda
     expected = False
     actual = q.is_feasible(("hi", 5), 20, 1)
@@ -109,14 +116,6 @@ def tests_is_feasible():
         print("Valid test for sum string: Passed")
     else:
         print("Invalid test for sum string: Failed")
-
-    # rho calculation
-    expected = True
-    actual = q.is_feasible(10, 11, 1)
-    if expected == actual:
-        print("Valid test for rho calculation: Passed")
-    else:
-        print("Invalid test for rho calculation: Failed")
 
     # rho = 0
     expected = False
@@ -199,23 +198,54 @@ def tests_calc_lq_mmc():
     """
     Test to see if calc_lq_mmc() is working correctly
     """
-    # Test for valid inputs
-    # Single lamda
+    #Test for valid inputs
+    #Single server
+    #Single lamda
     expected = 4.166666666666668
     actual = q.calc_lq_mmc(10, 12, 1)
     if isclose(expected, actual):
-        print("Valid test for valid input, single lamda: Passed")
+        print("Valid test for valid input, single server & single lamda: Passed")
     else:
-        print("Invalid test for valid input, single lamda: Failed")
+        print("Invalid test for valid input, single server & single lamda: Failed")
 
     # Multiple lamda
     actual = q.calc_lq_mmc((2, 3, 5), 12, 1)
     if isclose(expected, actual):
-        print("Valid test for valid input, multiple lamda: Passed")
+        print("Valid test for valid input, single server & multiple lamda: Passed")
     else:
-        print("Invalid test for valid input, multiple lamda: Failed")
+        print("Invalid test for valid input, single server & multiple lamda: Failed")
 
-    #Invalid cases
+    # Multi server tests
+    # Single lamda
+    expected = 1.3450980392156857
+    actual = q.calc_lq_mmc(35, 25, 2)
+    if isclose(expected, actual):
+        print("Valid test for valid input, multi server & single lamda: Passed")
+    else:
+        print("Invalid test for valid input, multi server & single lamda: Failed")
+
+    # Multiple lamda
+    actual = q.calc_lq_mmc((10, 11, 14), 25, 2)
+    if isclose(expected, actual):
+        print("Valid test for valid input, multi server & multiple lamda: Passed")
+    else:
+        print("Invalid test for valid input, multi server & multiple lamda: Failed")
+
+    #Test for invalid cases
+    # Invalid values, just to ensure that is_valid is called in is_feasible
+    actual = q.calc_p0(-10, -12, 1)
+    if math.isnan(actual):
+        print("Valid test for invalid input: Passed")
+    else:
+        print("Invalid test for invalid input: Failed")
+
+    # Valid values but infeasible rho
+    expected = math.inf
+    actual = q.calc_p0(10, 2, 1)
+    if isclose(expected, actual):
+        print("Valid test for infeasible input: Passed")
+    else:
+        print("Invalid test for infeasible input: Failed")
 
 
 tests_is_valid()
