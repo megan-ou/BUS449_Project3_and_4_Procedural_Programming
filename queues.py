@@ -5,7 +5,6 @@ from numbers import Number
 #Calculates the average number of people in queue (L_q) for an M/M/C queue
 #@Author Megan Ou, Toby Okoji
 #@Version September 2025
-
 def is_valid(lamda, mu, c = 1):
     """
     Checks to see if all arguments are numerical scalars.
