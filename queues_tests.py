@@ -1,3 +1,5 @@
+import math
+from math import isclose
 import queues as q
 
 #queues_tests.py
@@ -69,4 +71,78 @@ def tests_is_feasible():
     :return:
     """
 
+    #All values are valid
+    expected = True
+    actual = q.is_feasible(10, 12, 1)
+    if actual == expected:
+        print("Valid test for lamda, mu, c: Passed")
+    else:
+        print("Invalid test for lamda, mu, c: Failed")
+
+    expected = True
+    actual = q.is_feasible(10.3, 12, 1)
+    if actual == expected:
+        print("Valid test for int lamda, mu, c: Passed")
+    else:
+        print("Invalid test for int lamda, mu, c: Failed")
+
+    #Lamda is iterable
+    expected = True
+    actual = q.is_feasible((10,5),20,1)
+    if expected == actual:
+        print("Valid test for sum lamda: Passed")
+    else:
+        print("Invalid test for sum lamda: Failed")
+
+    #int in lamda
+    expected = True
+    actual = q.is_feasible((10.3,5),20,1)
+    if expected == actual:
+        print("Valid test for int sum lamda: Passed")
+    else:
+        print("Invalid test for int sum lamda: Failed")
+
+    #String in lamda
+    expected = False
+    actual = q.is_feasible(("hi",5),20,1)
+    if expected == actual:
+        print("Valid test for sum string: Passed")
+    else:
+        print("Invalid test for sum string: Failed")
+
+    #rho calculation
+    expected = True
+    actual = q.is_feasible(10,11,1)
+    if expected == actual:
+        print("Valid test for rho calculation: Passed")
+    else:
+        print("Invalid test for rho calculation: Failed")
+
+    #rho = 0
+    expected = False
+    actual = q.is_feasible(0,2,1)
+    if expected == actual:
+        print("Valid test for rho <=0: Passed")
+    else:
+        print("Invalid test for rho <=0: Failed")
+
+    #rho < 0
+    expected = False
+    actual = q.is_feasible(-2,2,1)
+    if expected == actual:
+        print("Valid test for negative rho: Passed")
+    else:
+        print("Invalid test for negative rho: Failed")
+
+    #rho > 1
+    expected = False
+    actual = q.is_feasible(10,2,1)
+    if expected == actual:
+        print("Valid test for rho >1: Passed")
+    else:
+        print("Invalid test for rho >1: Failed")
+
+
+
 tests_is_valid()
+tests_is_feasible()
