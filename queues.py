@@ -15,12 +15,16 @@ def is_valid(lamda, mu, c = 1):
     :param c: number of servers in the system
     :return: True if all arguments are valid, False if any argument is invalid
     """
+    #Check to see is lamda is iterable. If lamda is a single value, bundle it into a single
+    # value tuple so that we can treat all cases of lamda the same
     if not isiterable(lamda):
         lamda = (lamda,)
 
+    #Check to see if all values of lamda are numbers
     if not all([isinstance(lamda[i],Number) for i in range(len(lamda))]):
         return False
 
+    #Check to see if all values of lamda are greater than zero
     if not all([lamda[i]>0 for i in range(len(lamda))]):
         return False
 
@@ -32,11 +36,13 @@ def is_valid(lamda, mu, c = 1):
     if not isinstance(c, (int, float)):
         return False
 
-    if mu < 0:
+    #Check to see if mu and c are within the valid ranges
+    if mu <= 0:
         return False
 
-    if c < 0:
+    if c <= 0:
         return False
+
     else:
         return True
 
@@ -52,25 +58,25 @@ def is_feasible(lamda, mu, c = 1):
     :param c: number of servers in the system
     :return: True if rho is feasible False if rho is not feasible
     """
-
+    #Check to see if all values are valid
     if not is_valid(lamda, mu, c):
         return False
 
-    lamda_sum = 0
-
+    #Check to see if lamda is iterable and sum lamda up if it is
     if isiterable(lamda):
-        lamda_sum = sum(lamda)
-    else:
-        lamda_sum = lamda
+        lamda = sum(lamda)
 
+    #Calculate rho based on lamda
     rho = 0
-    rho = lamda_sum/(c * mu)
+    rho = lamda / (c * mu)
 
+    #Check to see if 0 < rho < 1
     if rho <= 0:
         return False
 
-    if rho > 1:
+    if rho >= 1:
         return False
+
     else:
         return True
 
@@ -94,11 +100,26 @@ def calc_p0(lamda, mu, c=1):
     if not is_feasible(lamda, mu, c):
         return math.inf
 
+    #check if lamda is iterable and sum it up if it is not
+    #for some reason (I cannot figure out why) sum() function reads sum as an unknown variable
+    # and throws error: UnboundLocalError: cannot access local variable 'sum' where it is
+    # not associated with a value
+    #I will manually sum up lamda with a list comprehension. I tried googling the issue and
+    # cannot seem to find a fix. sum() works everywhere else in this file
+    # I cannot for the life of me figure out why it chooses not to work HERE
+    #Originally did list comprehension [lamda_sum += lamda[i] for i in range(len(lamda))]
+    # but the program doesn't like that either!!!
+    if isiterable(lamda):
+        lamda_sum = 0
+        for i in range (len(lamda)):
+            lamda_sum += lamda[i]
+        lamda = lamda_sum
+
     #calculate r, the expected number of people in service
     r = lamda / mu
 
     #calculate rho, the traffic intensity
-    rho = r / c
+    rho = lamda / (mu * c)
 
     p0 = 0
 
@@ -108,14 +129,18 @@ def calc_p0(lamda, mu, c=1):
 
     #Multi server queue calculation
     else:
-        #Split the equation into three different parts
-        #Calculate the 1st term (summation) in the p0 equation
-        for n in range (c):
-            p0 += ((r ** n) / (math.factorial(n)))
-        #Calculate the 2nd term in the p0 equation
-        p0 += ((r^c) / (math.factorial(c) * (1 -rho)))
-        #Raise the entire equation to the -1 power
-        p0 = (p0) ** (-1)
+        # Split the equation into three different parts
+        # Calculate the 1st term (summation) in the p0 equation
+        term_1 = 0
+        for i in range(0, c):
+            term_1 += (r ** i) / math.factorial(i)
+
+        # Calculate the 2nd term in the p0 equation
+        term_2 = (r ** c) / (math.factorial(c) * (1 - rho))
+
+        # Raise the entire equation to the -1 power
+        sum = term_1 + term_2
+        p0 = sum ** (-1)
 
     return p0
 
@@ -139,10 +164,14 @@ def calc_lq_mmc(lamda, mu, c=1):
     if not is_feasible(lamda, mu, c):
         return math.inf
 
+    # check to see if lamda is iterable and if so, take the sum of lamda
+    if isiterable(lamda):
+        lamda = sum(lamda)
+
     #Initialize variables for calculating Lq
     lq = 0
     r = lamda / mu
-    rho = r / c
+    rho = lamda / (mu * c)
     p0 = calc_p0(lamda, mu, c)
 
     #Single server queue calculation
@@ -151,7 +180,10 @@ def calc_lq_mmc(lamda, mu, c=1):
 
     #Multi server queue calculation
     else:
-        lq = (r ** c) * rho / (math.factorial(c) * ((1 - rho) ** 2)) * p0
+        #Split up equation so it is easier to read
+        lq_numerator = (r ** c) * rho
+        lq_denominator = math.factorial(c) * ((1 - rho) ** 2)
+        lq = (lq_numerator / lq_denominator) * p0
 
     return lq
 
