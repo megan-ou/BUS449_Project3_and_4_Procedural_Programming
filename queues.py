@@ -10,6 +10,8 @@ def is_valid(lamda, mu, c = 1):
     """
     Checks to see if all arguments are numerical.
     Checks to see if value of arguments are within the valid range for queue calculations.
+    Streamlined version of is_valid that is used was given to us as feedback by Dr. Mitchell.
+
     Args:
         lamda: arrival rate of customers per time interval (scalar or multivalued)
         mu: service rate per time interval (scalar)
