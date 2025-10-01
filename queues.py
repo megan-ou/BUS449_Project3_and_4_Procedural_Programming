@@ -19,29 +19,23 @@ def is_valid(lamda, mu, c = 1):
     """
     #Check to see is lamda is iterable. If lamda is a single value, bundle it into a single
     # value tuple so that we can treat all cases of lamda the same
-    if not isiterable(lamda):
-        lamda = (lamda,)
+    #If lamda is an iterable, coerce it into a tuple as well so we can bundle it with
+    # the other arguments
+    if isiterable(lamda):
+        wlamda = tuple(lamda)
+    else:
+        wlamda = (lamda,)
 
-    #Check to see if all values of lamda are numbers and greater than 0
-    if not all([isinstance(l, Number) and l > 0 for l in lamda]):
+    #Combine args into a single tuple so that we can check to see if all arguments are
+    # numbers and greater than 0 once.
+    #TODO: Can you explain why it is args = (mu, c) + wlamda and not args = (mu, c, wlamda)
+    args = (mu, c) + wlamda
+
+    if all([isinstance(a, Number) and a > 0 for a in args]):
+        return True
+
+    else:
         return False
-
-    #Check to see if mu is a number
-    if not isinstance(mu, (int, float)):
-        return False
-
-    #Check to see if c is a number
-    if not isinstance(c, (int, float)):
-        return False
-
-    #Check to see if mu and c are within the valid ranges
-    if mu <= 0:
-        return False
-
-    if c <= 0:
-        return False
-
-    return True
 
 def is_feasible(lamda, mu, c = 1):
     """
@@ -108,8 +102,6 @@ def calc_p0(lamda, mu, c=1):
     #calculate rho using Little's Laws, the traffic intensity
     rho = lamda / (mu * c)
 
-    p0 = 0
-
     #Single server queue calculation
     if c == 1:
         p0 = 1 - rho
@@ -165,7 +157,9 @@ def calc_lq_mmc(lamda, mu, c=1):
 
     else:
         #Multi server queue calculation
-        #Split up equation so it is easier to read
+        #Calculate numerator and denominator of the formula (listed in header) independently
+        #This will help me debug if I were to have a typo; it also helps reduce the need for
+        # parentheses within the denominator
         p0 = calc_p0(lamda, mu, c)
         lq_numerator = (r ** c) * rho
         lq_denominator = math.factorial(c) * ((1 - rho) ** 2)
