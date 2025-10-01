@@ -53,9 +53,15 @@ def tests_is_valid():
     #Test for negative and out of range values
     actual = q.is_valid((3,2,-10), 7, 1)
     if expected == actual:
-        print("Valid test for negative lamda: Passed")
+        print("Valid test for negative multi-value lamda: Passed")
     else:
-        print("Invalid test for negative lamda: Failed")
+        print("Invalid test for negative multi-value lamda: Failed")
+
+    actual = q.is_valid(-10, 7, 1)
+    if expected == actual:
+        print("Valid test for negative scalar lamda: Passed")
+    else:
+        print("Invalid test for negative scalar lamda: Failed")
 
     actual = q.is_valid(10, 0, 1)
     if expected == actual:
