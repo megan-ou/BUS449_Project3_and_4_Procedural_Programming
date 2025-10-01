@@ -13,9 +13,9 @@ def is_valid(lamda, mu, c = 1):
     Streamlined version of is_valid that is used was given to us as feedback by Dr. Mitchell.
 
     Args:
-        lamda: arrival rate of customers per time interval (scalar or multivalued)
-        mu: service rate per time interval (scalar)
-        c: number of servers in the system (scalar)
+        lamda (number): arrival rate of customers per time interval (scalar or multivalued)
+        mu (number): service rate per time interval (scalar)
+        c (number): number of servers in the system (scalar)
 
     Returns: True if all arguments are valid, False if any argument is invalid
     """
@@ -66,7 +66,6 @@ def is_feasible(lamda, mu, c = 1):
     #Check to see if 0 < rho < 1 because rho is a percentage of time a server is busy
     #Since is_valid() already ensures that lamda, mu, and c are non-negative values, we only need to check
     # to see if rho is less than 1.
-
     if rho >= 1:
         return False
 
@@ -169,3 +168,5 @@ def calc_lq_mmc(lamda, mu, c=1):
 
     return lq
 
+if __name__ == '__main__':
+    calc_lq_mmc(10, 6, 1)
