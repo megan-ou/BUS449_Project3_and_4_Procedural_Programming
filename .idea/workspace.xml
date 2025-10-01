@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5df45104-9ca8-4aed-a2ae-7d6599389d7f" name="Changes" comment="MO - Imported Dr. Mitchell's unit tests.">
+    <list default="true" id="5df45104-9ca8-4aed-a2ae-7d6599389d7f" name="Changes" comment="MO - finalize queues_tests.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/queues.py" beforeDir="false" afterPath="$PROJECT_DIR$/queues.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/queues_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/queues_tests.py" afterDir="false" />
@@ -41,12 +41,12 @@
     &quot;assignee&quot;: &quot;megan-ou&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/megan-ou/BUS449_Project3_Procedural_Programming.git",
-    "accountId": "ff0397e0-9f2c-47e9-8203-7571464f3363"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/megan-ou/BUS449_Project3_Procedural_Programming.git&quot;,
+    &quot;accountId&quot;: &quot;ff0397e0-9f2c-47e9-8203-7571464f3363&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -61,13 +61,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python tests.Python tests for queues_tests.tests_calc_p0.executor": "Run",
+    "Python tests.Python tests for queues_tests.tests_is_valid.executor": "Run",
     "Python tests.Python tests for test_queues.Test_queues.executor": "Run",
     "Python tests.Python tests for test_queues.Test_queues.test_calc_lq_mmc.executor": "Debug",
     "Python tests.Python tests for test_queues.Test_queues.test_is_feasible.executor": "Run",
+    "Python tests.Python tests in queues_tests.py.executor": "Run",
     "Python tests.Python tests in test_queues.py.executor": "Run",
     "Python.queues.executor": "Run",
     "Python.queues_tests.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
@@ -75,7 +79,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.deploy.options",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -85,6 +89,38 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="Python tests for queues_tests.tests_calc_p0" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="Project3" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;queues_tests.tests_calc_p0&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for queues_tests.tests_is_valid" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="Project3" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;queues_tests.tests_is_valid&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="Python tests for test_queues.Test_queues" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="Project3" />
       <option name="ENV_FILES" value="" />
@@ -135,6 +171,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for queues_tests.tests_calc_p0" />
+        <item itemvalue="Python tests.Python tests for queues_tests.tests_is_valid" />
         <item itemvalue="Python tests.Python tests for test_queues.Test_queues.test_is_feasible" />
         <item itemvalue="Python tests.Python tests for test_queues.Test_queues" />
         <item itemvalue="Python tests.Python tests for test_queues.Test_queues.test_calc_lq_mmc" />
@@ -159,7 +197,8 @@
       <workItem from="1758818456779" duration="1467000" />
       <workItem from="1758932164534" duration="334000" />
       <workItem from="1759092780431" duration="1285000" />
-      <workItem from="1759102306934" duration="3611000" />
+      <workItem from="1759102306934" duration="11076000" />
+      <workItem from="1759275432293" duration="4006000" />
     </task>
     <task id="LOCAL-00001" summary="MO - Initial Commit">
       <option name="closed" value="true" />
@@ -193,7 +232,47 @@
       <option name="project" value="LOCAL" />
       <updated>1759101943899</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="MO - Lots of debugging work done">
+      <option name="closed" value="true" />
+      <created>1759105941411</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1759105941411</updated>
+    </task>
+    <task id="LOCAL-00006" summary="MO - starting to write tests">
+      <option name="closed" value="true" />
+      <created>1759113371411</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1759113371411</updated>
+    </task>
+    <task id="LOCAL-00007" summary="MO - starting to write tests">
+      <option name="closed" value="true" />
+      <created>1759115180354</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1759115180354</updated>
+    </task>
+    <task id="LOCAL-00008" summary="MO - starting to write tests">
+      <option name="closed" value="true" />
+      <created>1759115288782</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1759115288782</updated>
+    </task>
+    <task id="LOCAL-00009" summary="MO - finalize queues_tests.py">
+      <option name="closed" value="true" />
+      <created>1759115743392</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1759115743392</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,12 +284,15 @@
     <MESSAGE value="MO - Import Dr. Mitchell's unit tests" />
     <MESSAGE value="MO - Fix bugs in is_valid() and is_feasible + wrote code for calc_p0() and calc_lq_mmc()" />
     <MESSAGE value="MO - Imported Dr. Mitchell's unit tests." />
-    <option name="LAST_COMMIT_MESSAGE" value="MO - Imported Dr. Mitchell's unit tests." />
+    <MESSAGE value="MO - Lots of debugging work done" />
+    <MESSAGE value="MO - starting to write tests" />
+    <MESSAGE value="MO - finalize queues_tests.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="MO - finalize queues_tests.py" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Project3$queues_tests.coverage" NAME="queues_tests Coverage Results" MODIFIED="1759104744348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Project3$.coverage" NAME=" Coverage Results" MODIFIED="1759105561879" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Project3$queues.coverage" NAME="queues Coverage Results" MODIFIED="1759105407060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Project3$.coverage" NAME=" Coverage Results" MODIFIED="1759116294818" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Project3$queues.coverage" NAME="queues Coverage Results" MODIFIED="1759116302677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/BUS449_Project3_Procedural_Programming$queues.coverage" NAME="queues Coverage Results" MODIFIED="1759094059986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
