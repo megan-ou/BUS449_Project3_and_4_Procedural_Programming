@@ -30,8 +30,7 @@ def is_valid(lamda, mu, c = 1):
 
     #Combine args into a single tuple so that we can check to see if all arguments are
     # numbers and greater than 0 once.
-    #TODO: Can you explain why it is args = (mu, c) + wlamda and not args = (mu, c, wlamda)
-    args = (mu, c) + wlamda
+    args = (mu, c, *wlamda)
 
     if all([isinstance(a, Number) and a > 0 for a in args]):
         return True
@@ -46,9 +45,9 @@ def is_feasible(lamda, mu, c = 1):
     rho = lamda / mu * c
 
     Args:
-        lamda: arrival rate of customers per time interval (scalar or multivalued)
-        mu: service rate per time interval (scalar)
-        c: number of servers in the system (scalar)
+        lamda (number): arrival rate of customers per time interval (scalar or multivalued)
+        mu (number): service rate per time interval (scalar)
+        c (number): number of servers in the system (scalar)
 
     Returns: True if rho is feasible False if rho is not feasible
     """
@@ -79,9 +78,9 @@ def calc_p0(lamda, mu, c=1):
     For multi-server queues, p0 = ( ∑((r^n/n!)) + r^c/(c!*(1-rho)) ) ** -1
 
     Args:
-        lamda: arrival rate of customers per time interval (scalar or multivalued)
-        mu: service rate per time interval (scalar)
-        c: number of servers in the system (scalar)
+        lamda (number): arrival rate of customers per time interval (scalar or multivalued)
+        mu (number): service rate per time interval (scalar)
+        c (number): number of servers in the system (scalar)
 
     Returns: Probability of an empty queue
     """
@@ -130,9 +129,9 @@ def calc_lq_mmc(lamda, mu, c=1):
     For multi-server queues, Lq = r^c*rho/(c!*(1-rho)^2)*p0
 
     Args:
-        lamda: arrival rate of customers per time interval (scalar or multivalued)
-        mu: service rate per time interval (scalar)
-        c: number of servers in the system (scalar)
+        lamda (number): arrival rate of customers per time interval (scalar or multivalued)
+        mu (number): service rate per time interval (scalar)
+        c (number): number of servers in the system (scalar)
 
     Returns: average number of people waiting in the queue
     """
@@ -167,6 +166,3 @@ def calc_lq_mmc(lamda, mu, c=1):
         lq = (lq_numerator / lq_denominator) * p0
 
     return lq
-
-if __name__ == '__main__':
-    calc_lq_mmc(10, 6, 1)
