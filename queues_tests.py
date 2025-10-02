@@ -9,7 +9,9 @@ import queues as q
 
 def tests_is_valid():
     """
-    Test to see if function is_valid is working properly
+    Tests is_valid(lamda, mu, c) function in queues.py
+    Returns: None
+
     """
     #Check for valid inputs
     #Single lamda value
@@ -51,15 +53,27 @@ def tests_is_valid():
     #Test for negative and out of range values
     actual = q.is_valid((3,2,-10), 7, 1)
     if expected == actual:
-        print("Valid test for negative lamda: Passed")
+        print("Valid test for negative multi-value lamda: Passed")
     else:
-        print("Invalid test for negative lamda: Failed")
+        print("Invalid test for negative multi-value lamda: Failed")
+
+    actual = q.is_valid(-10, 7, 1)
+    if expected == actual:
+        print("Valid test for negative scalar lamda: Passed")
+    else:
+        print("Invalid test for negative scalar lamda: Failed")
 
     actual = q.is_valid(10, 0, 1)
     if expected == actual:
         print("Valid test for out of range mu: Passed")
     else:
         print("Invalid test for out of range mu: Failed")
+
+    actual = q.is_valid(10, -1, 1)
+    if expected == actual:
+        print("Valid test for negative mu: Passed")
+    else:
+        print("Invalid test for negative mu: Failed")
 
     actual = q.is_valid(10, 12, -1)
     if expected == actual:
@@ -69,7 +83,8 @@ def tests_is_valid():
 
 def tests_is_feasible():
     """
-    Test to see if is_feasible() is working correctly
+    Tests is_feasible(lamda, mu, c) function in queues.py
+    Returns: None
     """
     # All values are valid
     expected = True
@@ -144,7 +159,8 @@ def tests_is_feasible():
 
 def tests_calc_p0():
     """
-    Test to see if calc_p0 is working correctly
+    Tests calc_p0(lamda, mu, c = 1) function in queues.py
+    Returns: None
     """
     #Test for valid inputs
     #Single server tests
@@ -196,7 +212,8 @@ def tests_calc_p0():
 
 def tests_calc_lq_mmc():
     """
-    Test to see if calc_lq_mmc() is working correctly
+    Tests calc_lq_mmc(lamda, mu, c = 1) function in queues.py
+    Returns: None
     """
     #Test for valid inputs
     #Single server
