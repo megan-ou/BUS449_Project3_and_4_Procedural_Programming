@@ -1,4 +1,6 @@
 import math
+from unittest.util import sorted_list_difference
+
 from toolz import isiterable
 from numbers import Number
 #queues.py
@@ -166,3 +168,137 @@ def calc_lq_mmc(lamda, mu, c=1):
         lq = (lq_numerator / lq_denominator) * p0
 
     return lq
+
+def use_littles_law(lamda, mu, c=1, **kwargs):
+    """
+    Takes a keyword argument and uses Little's Laws to calculate r, rho, L, Lq, W, Wq, Wqk, Lqk based off the
+    passed in arguments. If multiple keyword arguments are passed in, only the first one will be used.
+
+    Args:
+        lamda (number): arrival rate of customers per time interval (scalar or multivalued)
+        mu (number): service rate per time interval (scalar)
+        c (number): number of servers in the system (scalar)
+        **kwargs:
+            l (number): average number of people in the system
+            lq (number): average number of people waiting the queue
+            w (number): time spent in the system
+            wq (number): time spent waiting in the queue
+
+    Returns: a dictionary with r, ro, l, lq, w, wq, and if the queue is a priority queue,
+        returns wqk and lqk as a tuple in addition
+    """
+    # Extract the first kwarg, since it is the only one used. We do not need to delete the other kwargs.
+    # By extracting it, we ensure that we won't accidentally reference a different kwarg.
+    first_kwarg = next(iter(kwargs))
+
+    #Check for errors in case arguments are passed in weird
+    if not is_valid(lamda, mu, c):
+        return math.nan
+    if not is_feasible(lamda, mu, c):
+        return math.inf
+
+    if not (first_kwarg == "l" or first_kwarg == "lq" or first_kwarg == "w" or first_kwarg == "wq"):
+        # kwarg is either l, lq, w, wq. Function is not written to handle any other type of kwarg. I was considering
+        # writing code to check to see if there are other valid kwargs if the first kwarg is an invalid value, but I
+        # think that I might leave that task for if I have more time at the end.
+        return math.nan
+    if not (isinstance(kwargs[first_kwarg], Number) and kwargs[first_kwarg] > 0):
+        return -math.inf
+
+    #Initialize dictionary with empty values. Initialize the dictionary so it is easier to assign values
+    # (and that is okay because dictionaries are mutable).
+
+    solution = dict.fromkeys(["r", "ro", "l", "lq", "w", "wq"])
+
+    if isiterable(lamda):
+        # Check to see if lamda is iterable because if so, then we know that the queue is a priority queue. That way we can
+        # have an aggregate lamda value and have dictionary keys for wqk and lqk. I don't want to create those keys in the
+        # dictionary if it is not necessary.
+        solution.update({"wqk":None, "lqk":None})
+
+        #To prevent the use of another conditional, also calculate the values of wqk and lqk. I am going to iterate
+        # through all lamdas and bundle them into a tuple
+        wqk = None
+        lqk = None
+        #TODO: write code after we write the methods needed
+        for i in range(1, len(lamda) + 1):
+            #TODO: function call for wqk "wqk = wqk + (call,)"
+            #TODO: function call for lqk "lqk = lqk + (call,)"
+            wqk = 0 #placeholder
+
+        solution["wqk"] = wqk
+        solution["lqk"] = lqk
+
+        #Aggregate lamda after individual lamda calculations are done so queue level calculations can
+        # use the total lamda.
+        lamda = sum(lamda)
+
+    #Start to fill out the dictionary. We can calculate r and ro immediately because the kwargs are not needed for
+    # the calculation; we only need the regular args
+
+    solution[first_kwarg] = kwargs.get(first_kwarg)
+    solution["r"] = lamda / mu
+    solution["ro"] = lamda / (mu * c)
+
+    #Now, do calculations for the values based on kwargs. Go through each "None" value key and calculate if we have the
+    # correct variables. Set these calculations within a while loop so that if it is skipped the first time around
+    # because the necessary variable was not available, we can come back to it since it might be calculated later on.
+    # The idea is that this way, each version/variation of a Little's Law equation is only run once.
+
+    while any([solution[keys] is None for keys in solution]):
+        #Arbitrarily chose to check "l" first
+        if solution["l"] is None and not (solution["w"] is None):
+            solution["l"] = solution["w"] * lamda
+        if solution["l"] is None and not (solution["lq"] is None):
+            solution["l"] = solution["lq"] + solution["r"]
+
+        #Check for "w" next
+        if solution["w"] is None and not (solution["wq"] is None):
+            solution["w"] = solution["wq"] + (1 / mu)
+        if solution["w"] is None and not (solution["l"] is None):
+            solution["w"] = solution["l"] / lamda
+
+        #Check for "wq" next
+        if solution["wq"] is None and not (solution["w"] is None):
+            solution["wq"] = solution["w"] - (1 / mu)
+        if solution["wq"] is None and not (solution["lq"] is None):
+            solution["wq"] = solution["lq"] / lamda
+
+        #Finally, check for "lq"
+        if solution["lq"] is None and not (solution["wq"] is None):
+            solution["lq"] = solution["wq"] * lamda
+        if solution["lq"] is None and not (solution["l"] is None):
+            solution["lq"] = solution["l"] - solution["r"]
+
+    return solution
+
+
+
+
+
+#TODO: Old code that didn't seem the most efficient because it calculates the same metric in more than one place.
+# Leaving this here while I play around with a possibly more effecient version. Is the new version truly more efficient?
+"""
+#Now, do calculations based on the first kwarg. The order of calculations will depend on which kwarg is given first.
+    # I was originally to go through each key and check if value was None and then calculate the value using
+    # Little's Laws, but then I realized that the order of calculations depends on what kwarg is given.
+    # If I were to use that idea, I would have to use a lot of nested if/else statements that I do not like
+    # (it feels messy). I think I might have to scrap that idea and do a bunch of if/else statements based on
+    # what the kwarg is.
+    if first_kwarg == "l":
+        solution["lq"] = solution["l"] - solution["r"]
+        solution["wq"] = solution["lq"] / lamda
+        solution["w"] = solution["wq"] + (1 / mu)
+    elif first_kwarg == "lq":
+        solution["wq"] = solution["lq"] / lamda
+        solution["w"] = solution["wq"] + (1 / mu)
+        solution["l"] = solution["w"] * lamda
+    elif first_kwarg == "w":
+        solution["l"] = solution["w"] * lamda
+        solution["lq"] = solution["l"] - solution["r"]
+        solution["wq"] = solution["lq"] / lamda
+    else:
+        solution["lq"] = solution["wq"] * lamda
+        solution["w"] = solution["wq"] + (1 / mu)
+        solution["l"] = solution["w"] * lamda
+"""
