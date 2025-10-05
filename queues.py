@@ -277,9 +277,9 @@ def use_littles_law(lamda, mu, c=1, **kwargs):
 
 
 #TODO: Old code that didn't seem the most efficient because it calculates the same metric in more than one place.
-# Leaving this here while I play around with a possibly more effecient version. Is the new version truly more efficient?
+# Leaving this here while I play around with a possibly more efficient version. Is the new version truly more efficient?
 """
-#Now, do calculations based on the first kwarg. The order of calculations will depend on which kwarg is given first.
+    #Now, do calculations based on the first kwarg. The order of calculations will depend on which kwarg is given first.
     # I was originally to go through each key and check if value was None and then calculate the value using
     # Little's Laws, but then I realized that the order of calculations depends on what kwarg is given.
     # If I were to use that idea, I would have to use a lot of nested if/else statements that I do not like
