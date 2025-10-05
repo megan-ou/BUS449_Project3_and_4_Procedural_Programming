@@ -195,9 +195,6 @@ def calc_lqk_mmc(k, lamda, wqk):
     #if all arguments, calculate lqk based on little's laws
     return lamda * wqk
 
-
-
-
 def use_littles_law(lamda, mu, c=1, **kwargs):
     """
     Takes a keyword argument and uses Little's Laws to calculate r, rho, L, Lq, W, Wq, Wqk, and Lqk based off the
