@@ -181,12 +181,13 @@ def calc_lqk_mmc(k, lamda, wqk):
     Returns: Lqk; average number of people waiting in queue for class k
 
     """
-    #Check to see if arguments are numerical and larger than 0. Was initially going to call is_valid() but we do not
-    # have the right number of arguments. Also check if lamda is iterable and then take the (k-1) index of lamda.
-    # Take k-1 since indexing starts at 0 and k classes start at 1.
+    #Check to see if all arguments are numerical and larger than 0. Was initially going to call is_valid() but we
+    # do not have the right types of arguments. (Missing mu).
     if not isinstance(k, Number) or k <= 0:
         return math.nan
     if isiterable(lamda):
+        #Check if lamda is iterable and then take the (k-1) index of lamda.
+        #Take k-1 since indexing starts at 0 and k classes start at 1.
         lamda = lamda[k-1]
     if not(isinstance(lamda, Number) or isinstance(wqk, Number)) or lamda <= 0 or wqk <= 0:
         return math.nan
