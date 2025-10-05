@@ -122,7 +122,6 @@ def calc_p0(lamda, mu, c=1):
 
     return p0
 
-
 def calc_lq_mmc(lamda, mu, c=1):
     """
     Calculates the Lq, or average number of people waiting in the queue, for an M/M/C type
@@ -169,9 +168,36 @@ def calc_lq_mmc(lamda, mu, c=1):
 
     return lq
 
+def calc_lqk_mmc(k, lamda, wqk):
+    """
+    Calculates the Lqk of specific priority group k in a priority queue.
+    Uses the formula L_q,k = W_q,k * lamda_k
+
+    Args:
+        k (number): priority class number
+        lamda (number): arrival rate of customers per time interval (scalar or multivalued)
+        wqk (number): average waiting time for priority class k
+
+    Returns: Lqk; average number of people waiting in queue for class k
+
+    """
+    #Check to see if all arguments are numerical and larger than 0. Was initially going to call is_valid() but we
+    # do not have the right types of arguments. (Missing mu).
+    if not isinstance(k, Number) or k <= 0:
+        return math.nan
+    if isiterable(lamda):
+        #Check if lamda is iterable and then take the (k-1) index of lamda.
+        #Take k-1 since indexing starts at 0 and k classes start at 1.
+        lamda = lamda[k-1]
+    if not(isinstance(lamda, Number) or isinstance(wqk, Number)) or lamda <= 0 or wqk <= 0:
+        return math.nan
+
+    #if all arguments, calculate lqk based on little's laws
+    return lamda * wqk
+
 def use_littles_law(lamda, mu, c=1, **kwargs):
     """
-    Takes a keyword argument and uses Little's Laws to calculate r, rho, L, Lq, W, Wq, Wqk, Lqk based off the
+    Takes a keyword argument and uses Little's Laws to calculate r, rho, L, Lq, W, Wq, Wqk, and Lqk based off the
     passed in arguments. If multiple keyword arguments are passed in, only the first one will be used.
 
     Args:
@@ -217,20 +243,26 @@ def use_littles_law(lamda, mu, c=1, **kwargs):
         solution.update({"wqk":None, "lqk":None})
 
         #To prevent the use of another conditional, also calculate the values of wqk and lqk. I am going to iterate
-        # through all lamdas and bundle them into a tuple
-        wqk = None
-        lqk = None
-        #TODO: write code after we write the methods needed
-        for i in range(1, len(lamda) + 1):
-            #TODO: function call for wqk "wqk = wqk + (call,)"
-            #TODO: function call for lqk "lqk = lqk + (call,)"
-            wqk = 0 #placeholder
+        # through all lamdas and bundle them into a tuple. First, initialize empty tuples that I will add to with
+        # each call to wqk and lqk.
+        wqk_tup = ()
+        lqk_tup = ()
 
-        solution["wqk"] = wqk
-        solution["lqk"] = lqk
+        #TODO: write code after we write the methods needed
+        for i in range(1, len(lamda)+1):
+            #Start iterating at 1 instead of 0 because k starts at 1
+            #Calculate wqk and save into its own variable so it can be used in the
+            # function call for calc_lqk_mmc().
+            #TODO: function call for wqk "wqk = wqk + (call,)"
+            wqk = 0 #temp value
+            wqk_tup = wqk_tup + (wqk,)
+            lqk_tup = lqk_tup + (calc_lqk_mmc(i, lamda[i-1], wqk),)
+
+        solution["wqk"] = wqk_tup
+        solution["lqk"] = lqk_tup
 
         #Aggregate lamda after individual lamda calculations are done so queue level calculations can
-        # use the total lamda.
+        # use the sum of lamda.
         lamda = sum(lamda)
 
     #Start to fill out the dictionary. We can calculate r and ro immediately because the kwargs are not needed for
@@ -272,14 +304,10 @@ def use_littles_law(lamda, mu, c=1, **kwargs):
 
     return solution
 
-
-
-
-
 #TODO: Old code that didn't seem the most efficient because it calculates the same metric in more than one place.
-# Leaving this here while I play around with a possibly more effecient version. Is the new version truly more efficient?
+# Leaving this here while I play around with a possibly more efficient version. Is the new version truly more efficient?
 """
-#Now, do calculations based on the first kwarg. The order of calculations will depend on which kwarg is given first.
+    #Now, do calculations based on the first kwarg. The order of calculations will depend on which kwarg is given first.
     # I was originally to go through each key and check if value was None and then calculate the value using
     # Little's Laws, but then I realized that the order of calculations depends on what kwarg is given.
     # If I were to use that idea, I would have to use a lot of nested if/else statements that I do not like
