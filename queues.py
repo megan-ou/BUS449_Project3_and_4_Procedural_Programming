@@ -122,7 +122,6 @@ def calc_p0(lamda, mu, c=1):
 
     return p0
 
-
 def calc_lq_mmc(lamda, mu, c=1):
     """
     Calculates the Lq, or average number of people waiting in the queue, for an M/M/C type
@@ -245,17 +244,21 @@ def use_littles_law(lamda, mu, c=1, **kwargs):
         #To prevent the use of another conditional, also calculate the values of wqk and lqk. I am going to iterate
         # through all lamdas and bundle them into a tuple. First, initialize empty tuples that I will add to with
         # each call to wqk and lqk.
-        wqk = ()
-        lqk = ()
+        wqk_tup = ()
+        lqk_tup = ()
 
         #TODO: write code after we write the methods needed
-        for i in range(len(lamda)):
+        for i in range(1, len(lamda)+1):
+            #Start iterating at 1 instead of 0 because k starts at 1
+            #Calculate wqk and save into its own variable so it can be used in the
+            # function call for calc_lqk_mmc().
             #TODO: function call for wqk "wqk = wqk + (call,)"
-            #TODO: function call for lqk "lqk = lqk + (call,)"
-            wqk = wqk + (1,i)
+            wqk = 0 #temp value
+            wqk_tup = wqk_tup + (wqk,)
+            lqk_tup = lqk_tup + (calc_lqk_mmc(i, lamda[i-1], wqk),)
 
-        solution["wqk"] = wqk
-        solution["lqk"] = lqk
+        solution["wqk"] = wqk_tup
+        solution["lqk"] = lqk_tup
 
         #Aggregate lamda after individual lamda calculations are done so queue level calculations can
         # use the sum of lamda.
