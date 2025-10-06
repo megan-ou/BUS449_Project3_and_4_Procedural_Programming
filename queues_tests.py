@@ -1,6 +1,8 @@
 import math
 from math import isclose
 import queues as q
+from queues import use_littles_law
+
 
 #queues_tests.py
 #Test valid and invalid cases for queues.py
@@ -264,8 +266,39 @@ def tests_calc_lq_mmc():
     else:
         print("Invalid test for infeasible input: Failed")
 
+def tests_calc_bk_mmc():
+    """
+    Tests calc_bk_mmc(k, lamda, mu, c=1) function in queues.py
+    Returns: None
 
+    """
+
+def tests_calc_wqk_mmc():
+    """
+    Tests calc_wqk_mmc(k, lamda, mu, c=1) function in queues.py
+    Returns: None
+
+    """
+
+def tests_calc_lqk_mmc():
+    """
+    Tests calc_lqk_mmc(k, lamda, mu, c=1) function in queues.py
+    Returns: None
+
+    """
+
+
+def tests_use_littles_law():
+    """
+    Tests use_littles_law(lamda, mu, c=1, **kwargs) in queues.py
+    Returns: None
+
+    """
 tests_is_valid()
 tests_is_feasible()
 tests_calc_p0()
 tests_calc_lq_mmc()
+tests_calc_bk_mmc()
+tests_calc_wqk_mmc()
+tests_calc_lqk_mmc()
+tests_use_littles_law()
