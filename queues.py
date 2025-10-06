@@ -170,7 +170,7 @@ def calc_lq_mmc(lamda, mu, c=1):
 def calc_bk_mmc(k, lamda, mu, c=1):
     """
     Helper method for calc_wqk_mmc that calculates the value of B_k in the W_q,k formula.
-    B_k = 1 - ∑(lamda_k/(mu * c))
+    B_k = 1 - ∑(lamda_k/(mu * c)) and B0 = 1
     Args:
         k (number): priority class number
         lamda (number): arrival rate of customers per time interval (scalar or multivalued)
@@ -186,8 +186,18 @@ def calc_bk_mmc(k, lamda, mu, c=1):
     if not is_feasible(lamda, mu, c):
         return math.inf
 
-    if not isinstance(k, Number) or k <= 0:
-        return -math.inf
+    if not isinstance(k, Number) or k < 0:
+        return -math.nan
+
+    if not isiterable(lamda):
+        lamda = (lamda,)
+
+    if k > len(lamda):
+        return math.nan
+
+    if k == 0:
+        #B0 is one as described by the formula
+        return 1
 
     rho_agg = 0
 
@@ -218,14 +228,14 @@ def calc_wqk_mmc(k, lamda, mu, c=1):
     if not is_feasible(lamda, mu, c):
         return math.inf
 
-    if k > len(lamda) or k <= 0:
+    if k > len(lamda) or k < 0:
         #k cannot be greater than the length of lamda because then we would be referencing indexes that
         # do not exist
         return -math.inf
 
     if isiterable(lamda):
         #extract lamda at the kth - 1 interval since indexing starts at 0
-        lamda_k = lamda[k]
+        lamda_k = lamda[k - 1]
     else:
         lamda_k = lamda
 
@@ -237,7 +247,7 @@ def calc_wqk_mmc(k, lamda, mu, c=1):
 
     numerator = (1 - rho) * lq
 
-    denominator = lamda_k * (bk_1 - 1) * bk
+    denominator = lamda_k * (bk_1) * bk
 
     wqk = numerator / denominator
 
@@ -258,9 +268,9 @@ def calc_lqk_mmc(k, lamda, wqk):
     """
     #Check to see if all arguments are numerical and larger than 0. Was initially going to call is_valid() but we
     # do not have the right types of arguments. (Missing mu).
-    if not isinstance(k, Number) or k <= 0:
+    if not isinstance(k, Number) or k < 0:
         return math.nan
-    if k > len(lamda) or k <= 0:
+    if k > len(lamda):
         # k cannot be greater than the length of lamda because then we would be referencing indexes that
         # do not exist
         return -math.inf
@@ -270,7 +280,7 @@ def calc_lqk_mmc(k, lamda, wqk):
         lamda_k = lamda[k-1]
     else:
         lamda_k = lamda
-    if not(isinstance(lamda_k, Number) or isinstance(wqk, Number)) or lamda <= 0 or wqk <= 0:
+    if not(isinstance(lamda_k, Number) or isinstance(wqk, Number)) or wqk <= 0:
         return math.nan
 
     #if all arguments, calculate lqk based on little's laws
@@ -294,6 +304,10 @@ def use_littles_law(lamda, mu, c=1, **kwargs):
     Returns: a dictionary with r, ro, l, lq, w, wq, and if the queue is a priority queue,
         returns wqk and lqk as a tuple in addition
     """
+    if len(kwargs) == 0:
+        #a keyword argument must be passed in order to use little's laws
+        return None
+
     # Extract the first kwarg, since it is the only one used. We do not need to delete the other kwargs.
     # By extracting it, we ensure that we won't accidentally reference a different kwarg.
     first_kwarg = next(iter(kwargs))
@@ -316,30 +330,33 @@ def use_littles_law(lamda, mu, c=1, **kwargs):
     solution = dict.fromkeys(["r", "ro", "l", "lq", "w", "wq"])
 
     if isiterable(lamda):
-        # Check to see if lamda is iterable because if so, then we know that the queue is a priority queue. That way we can
-        # have an aggregate lamda value and have dictionary keys for wqk and lqk. I don't want to create those keys in the
-        # dictionary if it is not necessary.
-        solution.update({"wqk":None, "lqk":None})
+        if len(lamda) > 1:
+            # Enter this if lamda is an iterable with more than one value so wqk and lqk entries are not
+            # created needlessly.
+            # Check to see if lamda is iterable because if so, then we know that the queue is a priority queue.
+            # That way we can have an aggregate lamda value and have dictionary keys for wqk and lqk.
+            # I don't want to create those keys in the dictionary if it is not necessary.
+            solution.update({"wqk":None, "lqk":None})
 
-        #To prevent the use of another conditional, also calculate the values of wqk and lqk. I am going to iterate
-        # through all lamdas and bundle them into a tuple. First, initialize empty tuples that I will add to with
-        # each call to wqk and lqk.
-        wqk_tup = ()
-        lqk_tup = ()
+            #To prevent the use of another conditional, also calculate the values of wqk and lqk. I am going to iterate
+            # through all lamdas and bundle them into a tuple. First, initialize empty tuples that I will add to with
+            # each call to wqk and lqk.
+            wqk_tup = ()
+            lqk_tup = ()
 
-        for i in range(1, len(lamda)+1):
-            #Start iterating at 1 instead of 0 because k starts at 1
-            #Calculate wqk and save into its own variable so it can be used in the
-            # function call for calc_lqk_mmc().
-            wqk = calc_wqk_mmc(i, lamda, mu, c)
-            wqk_tup = wqk_tup + (wqk,)
-            lqk_tup = lqk_tup + (calc_lqk_mmc(i, lamda, wqk),)
+            for i in range(1, len(lamda)+1):
+                #Start iterating at 1 instead of 0 because k starts at 1
+                #Calculate wqk and save into its own variable so it can be used in the
+                # function call for calc_lqk_mmc().
+                wqk = calc_wqk_mmc(i, lamda, mu, c)
+                wqk_tup = wqk_tup + (wqk,)
+                lqk_tup = lqk_tup + (calc_lqk_mmc(i, lamda, wqk),)
 
-        solution["wqk"] = wqk_tup
-        solution["lqk"] = lqk_tup
+            solution["wqk"] = wqk_tup
+            solution["lqk"] = lqk_tup
 
         #Aggregate lamda after individual lamda calculations are done so queue level calculations can
-        # use the sum of lamda.
+        # use the sum of lamda. This should also make the single tuple lamda into an int.
         lamda = sum(lamda)
 
     #Start to fill out the dictionary. We can calculate r and ro immediately because the kwargs are not needed for
