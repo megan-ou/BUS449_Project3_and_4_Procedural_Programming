@@ -1,5 +1,4 @@
 import math
-from unittest.util import sorted_list_difference
 
 from toolz import isiterable
 from numbers import Number
@@ -168,6 +167,82 @@ def calc_lq_mmc(lamda, mu, c=1):
 
     return lq
 
+def calc_bk_mmc(k, lamda, mu, c=1):
+    """
+    Helper method for calc_wqk_mmc that calculates the value of B_k in the W_q,k formula.
+    B_k = 1 - ∑(lamda_k/(mu * c))
+    Args:
+        k (number): priority class number
+        lamda (number): arrival rate of customers per time interval (scalar or multivalued)
+        mu (number): service rate per time interval (scalar)
+        c (number): number of servers in the system (scalar)
+
+    Returns: the value of Bk
+
+    """
+    if not is_valid(lamda, mu, c):
+        return math.nan
+
+    if not is_feasible(lamda, mu, c):
+        return math.inf
+
+    if not isinstance(k, Number) or k <= 0:
+        return -math.inf
+
+    rho_agg = 0
+
+    rho_agg = [rho_agg + lamda[j] / (c * mu) for j in range(k)]
+
+    rho_agg = sum(rho_agg)
+
+    bk = 1 - rho_agg
+
+    return bk
+
+def calc_wqk_mmc(k, lamda, mu, c=1):
+    """
+    Calculates wqk, the average time spent waiting in queue for customers in class k. Uses the formula:
+    = ((1-ρ) * W_q)/(B_(k-1) * B_k ) = ((1-ρ) L_q)/(λB_(k-1) B_k )
+    Args:
+        k (number): priority class number
+        lamda (number): arrival rate of customers per time interval (scalar or multivalued)
+        mu (number): service rate per time interval (scalar)
+        c (number): number of servers in the system (scalar)
+
+    Returns: the average time spent in queue for a specific priority class k (wqk)
+
+    """
+    if not is_valid(lamda, mu, c):
+        return math.nan
+
+    if not is_feasible(lamda, mu, c):
+        return math.inf
+
+    if k > len(lamda) or k <= 0:
+        #k cannot be greater than the length of lamda because then we would be referencing indexes that
+        # do not exist
+        return -math.inf
+
+    if isiterable(lamda):
+        #extract lamda at the kth - 1 interval since indexing starts at 0
+        lamda_k = lamda[k]
+    else:
+        lamda_k = lamda
+
+    lq = calc_lq_mmc(lamda, mu, c)
+    rho = lamda_k / (mu * c)
+
+    bk = calc_bk_mmc(k, lamda, mu, c)
+    bk_1 = calc_bk_mmc(k - 1, lamda, mu, c)
+
+    numerator = (1 - rho) * lq
+
+    denominator = lamda_k * (bk_1 - 1) * bk
+
+    wqk = numerator / denominator
+
+    return wqk
+
 def calc_lqk_mmc(k, lamda, wqk):
     """
     Calculates the Lqk of specific priority group k in a priority queue.
@@ -185,15 +260,21 @@ def calc_lqk_mmc(k, lamda, wqk):
     # do not have the right types of arguments. (Missing mu).
     if not isinstance(k, Number) or k <= 0:
         return math.nan
+    if k > len(lamda) or k <= 0:
+        # k cannot be greater than the length of lamda because then we would be referencing indexes that
+        # do not exist
+        return -math.inf
     if isiterable(lamda):
         #Check if lamda is iterable and then take the (k-1) index of lamda.
         #Take k-1 since indexing starts at 0 and k classes start at 1.
-        lamda = lamda[k-1]
-    if not(isinstance(lamda, Number) or isinstance(wqk, Number)) or lamda <= 0 or wqk <= 0:
+        lamda_k = lamda[k-1]
+    else:
+        lamda_k = lamda
+    if not(isinstance(lamda_k, Number) or isinstance(wqk, Number)) or lamda <= 0 or wqk <= 0:
         return math.nan
 
     #if all arguments, calculate lqk based on little's laws
-    return lamda * wqk
+    return lamda_k * wqk
 
 def use_littles_law(lamda, mu, c=1, **kwargs):
     """
@@ -228,8 +309,6 @@ def use_littles_law(lamda, mu, c=1, **kwargs):
         # writing code to check to see if there are other valid kwargs if the first kwarg is an invalid value, but I
         # think that I might leave that task for if I have more time at the end.
         return math.nan
-    if not (isinstance(first_kwarg, Number) and first_kwarg > 0):
-        return -math.inf
 
     #Initialize dictionary with empty values. Initialize the dictionary so it is easier to assign values
     # (and that is okay because dictionaries are mutable).
@@ -248,15 +327,13 @@ def use_littles_law(lamda, mu, c=1, **kwargs):
         wqk_tup = ()
         lqk_tup = ()
 
-        #TODO: write code after we write the methods needed
         for i in range(1, len(lamda)+1):
             #Start iterating at 1 instead of 0 because k starts at 1
             #Calculate wqk and save into its own variable so it can be used in the
             # function call for calc_lqk_mmc().
-            #TODO: function call for wqk "wqk = wqk + (call,)"
-            wqk = 0 #temp value
+            wqk = calc_wqk_mmc(i, lamda, mu, c)
             wqk_tup = wqk_tup + (wqk,)
-            lqk_tup = lqk_tup + (calc_lqk_mmc(i, lamda[i-1], wqk),)
+            lqk_tup = lqk_tup + (calc_lqk_mmc(i, lamda, wqk),)
 
         solution["wqk"] = wqk_tup
         solution["lqk"] = lqk_tup
@@ -330,38 +407,5 @@ def use_littles_law(lamda, mu, c=1, **kwargs):
         solution["w"] = solution["wq"] + (1 / mu)
         solution["l"] = solution["w"] * lamda
 """
-
-def calc_bk_mmc(k, lamda, mu, c=1):
-    if not is_valid(k, lamda, mu):
-        return math.nan
-
-    if not is_feasible(k, lamda, mu):
-        return math.inf
-
-    rho_agg = 0
-    for j in range(k):
-        rho_agg += lamda[j]/(c*mu)
-
-    Bk = 1 - rho_agg
-
-    return Bk
-
-def calc_wqk_mmc(k, lamda, mu, c=1):
-    if not is_valid(lamda, mu, k):
-        return math.nan
-
-    if not is_feasible(lamda, mu, c=1):
-        return math.inf
-
-    if isiterable(lamda):
-        lamda_agg = sum(lamda)
-
-    Numerator = (1 - rho) * lamda
-
-    Denominator = lamda * (Bk - 1) * Bk
-
-    Wqk = Numerator / Denominator
-
-    return Wqk
 
 
