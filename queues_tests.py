@@ -305,7 +305,38 @@ def tests_calc_bk_mmc():
     else:
         print("Invalid test for invalid k = -1: Failed")
 
-    #
+    #test for invalid cases
+    #check to see if is_valid is passed to is_feasible
+    actual = q.calc_bk_mmc(2, -12, 1, 1)
+    if math.isnan(actual):
+        print("Valid test for invalid input: Passed")
+    else:
+        print("Invalid test for invalid input: Failed")
+
+    #test lamda iterable
+    expected = .6
+    actual = q.calc_bk_mmc(1, (2,3), 5, 1)
+    if isclose(expected, actual):
+        print("Valid test for lamda iterable: Passed")
+    else:
+        print("Invalid test for lamda iterable: Failed")
+
+    #test k < len(lamda)
+    expected = math.nan
+    actual = q.calc_bk_mmc(5, 2,5,1)
+    if math.isnan(actual):
+        print("Valid test for k > len(lamda): Passed")
+    else:
+        print("Invalid test for k > len(lamda): Failed")
+
+    #test k == 0
+    expected = 1
+    actual = q.calc_bk_mmc(0, 2,5,1)
+    if expected ==actual:
+        print("Valid test for k = 0: Passed")
+    else:
+        print("Invalid test for k = 0: Failed")
+
 def tests_calc_wqk_mmc():
     """
     Tests calc_wqk_mmc(k, lamda, mu, c=1) function in queues.py
