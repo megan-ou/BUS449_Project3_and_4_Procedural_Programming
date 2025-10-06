@@ -180,33 +180,32 @@ def calc_bk_mmc(k, lamda, mu, c=1):
     Returns: the value of Bk
 
     """
-    if not is_valid(lamda, mu, c):
+    if not is_valid(lamda, mu, c) or not isinstance(k, Number) or k < 0:
         return math.nan
 
     if not is_feasible(lamda, mu, c):
         return math.inf
 
-    if not isinstance(k, Number) or k < 0:
-        return -math.nan
-
     if not isiterable(lamda):
+        #force single lamdas into a tuple so we can check if k is within range
         lamda = (lamda,)
 
     if k > len(lamda):
+        #k cannot be longer than lamda because it will reference indexes that do not exist
         return math.nan
 
     if k == 0:
-        #B0 is one as described by the formula
+        #B0 = 1 as described by the formula
         return 1
 
+    #variable is named rho aggregate because the formula sums up lamda_j / (mu * c) which is rho for each
+    # lamda_k; I am not sure if there is a better name for this, this is just what made the most sense to me
     rho_agg = 0
-
     rho_agg = [rho_agg + lamda[j] / (c * mu) for j in range(k)]
-
+    #take the sum because the list comprehension will give us a list
     rho_agg = sum(rho_agg)
 
     bk = 1 - rho_agg
-
     return bk
 
 def calc_wqk_mmc(k, lamda, mu, c=1):
@@ -233,24 +232,18 @@ def calc_wqk_mmc(k, lamda, mu, c=1):
             # k cannot be greater than the length of lamda because then we would be referencing indexes that
             # do not exist
             return math.nan
-        #extract lamda at the kth - 1 interval since indexing starts at 0
-        lamda_k = lamda[k - 1]
         lamda_agg = sum(lamda)
     else:
-        lamda_k = lamda
         lamda_agg = lamda
 
+    #Calculate values of Lq and rho with aggregate lamda values - not sure why but the formula does call for this
     lq = calc_lq_mmc(lamda, mu, c)
     rho = lamda_agg / (mu * c)
-
+    #Calculate function calls before wqk calculation so it is cleaner (is it faster too?)
     bk = calc_bk_mmc(k, lamda, mu, c)
     bk_1 = calc_bk_mmc(k - 1, lamda, mu, c)
 
-    numerator = (1 - rho) * lq
-
-    denominator = lamda_agg * bk_1 * bk
-
-    wqk = numerator / denominator
+    wqk = (1 - rho) * lq / (lamda_agg * bk_1 * bk)
 
     return wqk
 
@@ -269,19 +262,21 @@ def calc_lqk_mmc(k, lamda, wqk):
     """
     #Check to see if all arguments are numerical and larger than 0. Was initially going to call is_valid() but we
     # do not have the right types of arguments. (Missing mu).
-    if not isinstance(k, Number) or k < 0:
+    if not isinstance(k, Number) or k <= 0:
         return math.nan
-    if k > len(lamda):
-        # k cannot be greater than the length of lamda because then we would be referencing indexes that
-        # do not exist
-        return -math.inf
+
     if isiterable(lamda):
+        if k > len(lamda):
+            # k cannot be greater than the length of lamda because then we would be referencing indexes that
+            # do not exist
+            return math.nan
         #Check if lamda is iterable and then take the (k-1) index of lamda.
         #Take k-1 since indexing starts at 0 and k classes start at 1.
         lamda_k = lamda[k-1]
     else:
         lamda_k = lamda
-    if not(isinstance(lamda_k, Number) or isinstance(wqk, Number)) or wqk <= 0:
+
+    if not isinstance(lamda_k, Number) or not isinstance(wqk, Number) or wqk <= 0 or lamda_k <= 0:
         return math.nan
 
     #if all arguments, calculate lqk based on little's laws
