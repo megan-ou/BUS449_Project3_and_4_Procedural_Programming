@@ -367,6 +367,10 @@ def use_littles_law(lamda, mu, c=1, **kwargs):
     # the calculation; we only need the regular args
 
     solution[first_kwarg] = kwargs.get(first_kwarg)
+    if solution[first_kwarg] <= 0:
+        #lq, wq, l, or w should not be 0 or negative
+        #not in flowcharts because added in last minute
+        return math.nan
     solution["r"] = lamda / mu
     solution["ro"] = lamda / (mu * c)
 
