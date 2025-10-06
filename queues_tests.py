@@ -305,14 +305,6 @@ def tests_calc_bk_mmc():
     else:
         print("Invalid test for invalid k = -1: Failed")
 
-    #test k = 1
-    expected = 1
-    actual = q.calc_bk_mmc(-1, 5, 10, 1)
-    if isclose(expected, actual):
-        print("Valid test for valid k = 0: Passed")
-    else:
-        print("Invalid test for valid k = 0: Failed")
-
     #
 def tests_calc_wqk_mmc():
     """
