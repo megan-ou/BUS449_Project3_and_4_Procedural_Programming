@@ -221,7 +221,10 @@ def calc_wqk_mmc(k, lamda, mu, c=1):
     Returns: the average time spent in queue for a specific priority class k (wqk)
 
     """
-    if not is_valid(lamda, mu, c) or k < 0:
+    if not is_valid(lamda, mu, c) or not isinstance(k, Number):
+        return math.nan
+
+    if k < 0:
         return math.nan
 
     if not is_feasible(lamda, mu, c):
