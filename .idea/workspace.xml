@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5df45104-9ca8-4aed-a2ae-7d6599389d7f" name="Changes" comment="MO - Tests set up">
-      <change beforePath="$PROJECT_DIR$/.idea/Project3-4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Project3-4.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="5df45104-9ca8-4aed-a2ae-7d6599389d7f" name="Changes" comment="bk and wqk push">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/queues.py" beforeDir="false" afterPath="$PROJECT_DIR$/queues.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/queues_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/queues_tests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,7 +43,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/megan-ou/BUS449_Project3_Procedural_Programming.git&quot;,
-    &quot;accountId&quot;: &quot;ff0397e0-9f2c-47e9-8203-7571464f3363&quot;
+    &quot;accountId&quot;: &quot;52e0ff7e-cd9c-4686-a7e2-d11a45357187&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -60,70 +57,52 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python tests.Python tests for queues_tests.tests_calc_p0.executor": "Run",
-    "Python tests.Python tests for queues_tests.tests_is_valid.executor": "Run",
-    "Python tests.Python tests for test_queues.Test_queues.executor": "Run",
-    "Python tests.Python tests for test_queues.Test_queues.test_calc_bk_mmc.executor": "Run",
-    "Python tests.Python tests for test_queues.Test_queues.test_calc_lq_mmc.executor": "Debug",
-    "Python tests.Python tests for test_queues.Test_queues.test_calc_lqk_mmc.executor": "Run",
-    "Python tests.Python tests for test_queues.Test_queues.test_calc_wqk_mmc.executor": "Run",
-    "Python tests.Python tests for test_queues.Test_queues.test_is_feasible.executor": "Run",
-    "Python tests.Python tests for test_queues.Test_queues.test_is_valid.executor": "Run",
-    "Python tests.Python tests for test_queues.Test_queues.test_use_littles_law.executor": "Run",
-    "Python tests.Python tests in queues_tests.py.executor": "Run",
-    "Python tests.Python tests in test_queues.py.executor": "Run",
-    "Python.diff_tools.executor": "Run",
-    "Python.queues.executor": "Run",
-    "Python.queues_tests.executor": "Run",
-    "Python.test.executor": "Run",
-    "Python.test_queues.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python tests.Python tests for test_queues.Test_queues.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_queues.Test_queues.test_calc_lq_mmc.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for test_queues.Test_queues.test_is_feasible.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_queues.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.queues.executor&quot;: &quot;Run&quot;,
+    &quot;Python.queues_tests.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Project3-4" />
+    <configuration name="Python tests for test_queues.Test_queues" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="Project3" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.13" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_queues.Test_queues&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_queues.Test_queues.test_calc_bk_mmc" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="Project3-4" />
+    <configuration name="Python tests for test_queues.Test_queues.test_calc_lq_mmc" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="Project3" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -134,12 +113,12 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_queues.Test_queues.test_calc_bk_mmc&quot;" />
+      <option name="_new_target" value="&quot;test_queues.Test_queues.test_calc_lq_mmc&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_queues.Test_queues.test_calc_lqk_mmc" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="Project3-4" />
+    <configuration name="Python tests for test_queues.Test_queues.test_is_feasible" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="Project3" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -150,57 +129,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_queues.Test_queues.test_calc_lqk_mmc&quot;" />
+      <option name="_new_target" value="&quot;test_queues.Test_queues.test_is_feasible&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_queues.Test_queues.test_calc_wqk_mmc" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="Project3-4" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_queues.Test_queues.test_calc_wqk_mmc&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for test_queues.Test_queues.test_use_littles_law" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="Project3-4" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_queues.Test_queues.test_use_littles_law&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
+    <list>
+      <item itemvalue="Python tests.Python tests for test_queues.Test_queues" />
+      <item itemvalue="Python tests.Python tests for test_queues.Test_queues.test_calc_lq_mmc" />
+      <item itemvalue="Python tests.Python tests for test_queues.Test_queues.test_is_feasible" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for test_queues.Test_queues.test_use_littles_law" />
-        <item itemvalue="Python tests.Python tests for test_queues.Test_queues.test_calc_lqk_mmc" />
-        <item itemvalue="Python tests.Python tests for test_queues.Test_queues.test_calc_wqk_mmc" />
-        <item itemvalue="Python tests.Python tests for test_queues.Test_queues.test_calc_bk_mmc" />
-        <item itemvalue="Python.test" />
+        <item itemvalue="Python tests.Python tests for test_queues.Test_queues.test_is_feasible" />
+        <item itemvalue="Python tests.Python tests for test_queues.Test_queues" />
+        <item itemvalue="Python tests.Python tests for test_queues.Test_queues.test_calc_lq_mmc" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-9c94529fcfe0-JavaScript-PY-252.26199.168" />
-        <option value="bundled-python-sdk-b3d66beaba9a-c6efb3732140-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.26199.168" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-PY-252.26830.99" />
+        <option value="bundled-python-sdk-164cda30dcd9-0af03a5fa574-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.26830.99" />
       </set>
     </attachedChunks>
   </component>
@@ -214,9 +164,13 @@
       <workItem from="1758818456779" duration="1467000" />
       <workItem from="1758932164534" duration="334000" />
       <workItem from="1759092780431" duration="1285000" />
-      <workItem from="1759102306934" duration="11076000" />
-      <workItem from="1759275432293" duration="6707000" />
-      <workItem from="1759357977001" duration="32250000" />
+      <workItem from="1759102306934" duration="3611000" />
+      <workItem from="1759646173193" duration="86000" />
+      <workItem from="1759646428447" duration="87000" />
+      <workItem from="1759646697360" duration="329000" />
+      <workItem from="1759647039634" duration="2497000" />
+      <workItem from="1759703249245" duration="463000" />
+      <workItem from="1759770939180" duration="7899000" />
     </task>
     <task id="LOCAL-00001" summary="MO - Initial Commit">
       <option name="closed" value="true" />
@@ -250,259 +204,62 @@
       <option name="project" value="LOCAL" />
       <updated>1759101943899</updated>
     </task>
-    <task id="LOCAL-00005" summary="MO - Lots of debugging work done">
+    <task id="LOCAL-00005" summary=".">
       <option name="closed" value="true" />
-      <created>1759105941411</created>
+      <created>1759646234794</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1759105941411</updated>
+      <updated>1759646234794</updated>
     </task>
-    <task id="LOCAL-00006" summary="MO - starting to write tests">
+    <task id="LOCAL-00006" summary=".">
       <option name="closed" value="true" />
-      <created>1759113371411</created>
+      <created>1759649230393</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1759113371411</updated>
+      <updated>1759649230393</updated>
     </task>
-    <task id="LOCAL-00007" summary="MO - starting to write tests">
+    <task id="LOCAL-00007" summary="bk and wqk push">
       <option name="closed" value="true" />
-      <created>1759115180354</created>
+      <created>1759650038352</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1759115180354</updated>
+      <updated>1759650038352</updated>
     </task>
-    <task id="LOCAL-00008" summary="MO - starting to write tests">
+    <task id="LOCAL-00008" summary="bk and wqk push">
       <option name="closed" value="true" />
-      <created>1759115288782</created>
+      <created>1759703259023</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1759115288782</updated>
+      <updated>1759703259023</updated>
     </task>
-    <task id="LOCAL-00009" summary="MO - finalize queues_tests.py">
+    <task id="LOCAL-00009" summary="bk and wqk push">
       <option name="closed" value="true" />
-      <created>1759115743392</created>
+      <created>1759703289249</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1759115743392</updated>
+      <updated>1759703289249</updated>
     </task>
-    <task id="LOCAL-00010" summary="MO - Fixes from Dr. Mitchell's feedback">
-      <option name="closed" value="true" />
-      <created>1759355275489</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1759355275489</updated>
-    </task>
-    <task id="LOCAL-00011" summary="MO - Fixes from Dr. Mitchell's feedback">
-      <option name="closed" value="true" />
-      <created>1759355302223</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1759355302223</updated>
-    </task>
-    <task id="LOCAL-00012" summary="MO - Fixes from Dr. Mitchell's feedback">
-      <option name="closed" value="true" />
-      <created>1759355440704</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1759355440704</updated>
-    </task>
-    <task id="LOCAL-00013" summary="MO - Fixes from Dr. Mitchell's feedback">
-      <option name="closed" value="true" />
-      <created>1759356331197</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1759356331197</updated>
-    </task>
-    <task id="LOCAL-00014" summary="MO - Fixes from Dr. Mitchell's feedback">
-      <option name="closed" value="true" />
-      <created>1759356983119</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1759356983119</updated>
-    </task>
-    <task id="LOCAL-00015" summary="MO - Fixes from Dr. Mitchell's feedback">
-      <option name="closed" value="true" />
-      <created>1759358682120</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1759358682120</updated>
-    </task>
-    <task id="LOCAL-00016" summary="MO - Fixes from Dr. Mitchell's feedback">
-      <option name="closed" value="true" />
-      <created>1759423545068</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1759423545068</updated>
-    </task>
-    <task id="LOCAL-00017" summary="MO - programmed use_littles_law()">
-      <option name="closed" value="true" />
-      <created>1759455388316</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1759455388316</updated>
-    </task>
-    <task id="LOCAL-00018" summary="MO - programmed use_littles_law()">
-      <option name="closed" value="true" />
-      <created>1759692424198</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1759692424198</updated>
-    </task>
-    <task id="LOCAL-00019" summary="MO - programmed calculate_lqk_mmc()">
-      <option name="closed" value="true" />
-      <created>1759697568147</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1759697568147</updated>
-    </task>
-    <task id="LOCAL-00020" summary="MO - programmed calculate_lqk_mmc()">
-      <option name="closed" value="true" />
-      <created>1759697808235</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1759697808235</updated>
-    </task>
-    <task id="LOCAL-00021" summary="MO - finish up some #TODOs">
-      <option name="closed" value="true" />
-      <created>1759698108830</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1759698108830</updated>
-    </task>
-    <task id="LOCAL-00022" summary="MO - finish up some #TODOs">
-      <option name="closed" value="true" />
-      <created>1759698263846</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1759698263846</updated>
-    </task>
-    <task id="LOCAL-00023" summary="MO - finish up some #TODOs">
-      <option name="closed" value="true" />
-      <created>1759725461377</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1759725461377</updated>
-    </task>
-    <task id="LOCAL-00024" summary="MO - feedback for toby">
-      <option name="closed" value="true" />
-      <created>1759726955504</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1759726955504</updated>
-    </task>
-    <task id="LOCAL-00025" summary="MO - feedback for toby">
-      <option name="closed" value="true" />
-      <created>1759728536001</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1759728536001</updated>
-    </task>
-    <task id="LOCAL-00026" summary="MO - feedback for toby">
-      <option name="closed" value="true" />
-      <created>1759728787212</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1759728787212</updated>
-    </task>
-    <task id="LOCAL-00027" summary="MO - revisions to Toby's code">
-      <option name="closed" value="true" />
-      <created>1759729153750</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1759729153750</updated>
-    </task>
-    <task id="LOCAL-00028" summary="MO - importing new tests">
-      <option name="closed" value="true" />
-      <created>1759729270596</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1759729270596</updated>
-    </task>
-    <task id="LOCAL-00029" summary="MO - debugging work">
-      <option name="closed" value="true" />
-      <created>1759731371193</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1759731371193</updated>
-    </task>
-    <task id="LOCAL-00030" summary="MO - debugging work">
-      <option name="closed" value="true" />
-      <created>1759732112948</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1759732112948</updated>
-    </task>
-    <task id="LOCAL-00031" summary="MO - debugging work">
-      <option name="closed" value="true" />
-      <created>1759732135157</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1759732135157</updated>
-    </task>
-    <task id="LOCAL-00032" summary="MO - fully debugged code">
-      <option name="closed" value="true" />
-      <created>1759733202301</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1759733202301</updated>
-    </task>
-    <task id="LOCAL-00033" summary="MO - feedback for toby">
-      <option name="closed" value="true" />
-      <created>1759771672870</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1759771672870</updated>
-    </task>
-    <task id="LOCAL-00034" summary="MO - feedback for toby">
-      <option name="closed" value="true" />
-      <created>1759771684192</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1759771684192</updated>
-    </task>
-    <task id="LOCAL-00035" summary="MO - Tests set up">
-      <option name="closed" value="true" />
-      <created>1759786500795</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1759786500795</updated>
-    </task>
-    <option name="localTasksCounter" value="36" />
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="MO - Initial Commit" />
@@ -510,42 +267,15 @@
     <MESSAGE value="MO - Import Dr. Mitchell's unit tests" />
     <MESSAGE value="MO - Fix bugs in is_valid() and is_feasible + wrote code for calc_p0() and calc_lq_mmc()" />
     <MESSAGE value="MO - Imported Dr. Mitchell's unit tests." />
-    <MESSAGE value="MO - Lots of debugging work done" />
-    <MESSAGE value="MO - starting to write tests" />
-    <MESSAGE value="MO - finalize queues_tests.py" />
-    <MESSAGE value="MO - Fixes from Dr. Mitchell's feedback" />
-    <MESSAGE value="MO - programmed use_littles_law()" />
-    <MESSAGE value="MO - programmed calculate_lqk_mmc()" />
-    <MESSAGE value="MO - finish up some #TODOs" />
-    <MESSAGE value="MO - revisions to Toby's code" />
-    <MESSAGE value="MO - importing new tests" />
-    <MESSAGE value="MO - debugging work" />
-    <MESSAGE value="MO - fully debugged code" />
-    <MESSAGE value="MO - feedback for toby" />
-    <MESSAGE value="MO - Tests set up" />
-    <option name="LAST_COMMIT_MESSAGE" value="MO - Tests set up" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/test_queues.py</url>
-          <line>494</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="." />
+    <MESSAGE value="bk and wqk push" />
+    <option name="LAST_COMMIT_MESSAGE" value="bk and wqk push" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Project3_4$queues_tests.coverage" NAME="queues_tests Coverage Results" MODIFIED="1759788621460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Project3$queues.coverage" NAME="queues Coverage Results" MODIFIED="1759105407060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BUS449_Project3_Procedural_Programming$queues.coverage" NAME="queues Coverage Results" MODIFIED="1759788800059" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Project3$queues_tests.coverage" NAME="queues_tests Coverage Results" MODIFIED="1759104744348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Project3_4$test_queues.coverage" NAME="test_queues Coverage Results" MODIFIED="1759358369662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Project3_4$queues.coverage" NAME="queues Coverage Results" MODIFIED="1759423476482" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Project3$.coverage" NAME=" Coverage Results" MODIFIED="1759355227048" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Project3$queues.coverage" NAME="queues Coverage Results" MODIFIED="1759116302677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/BUS449_Project3_Procedural_Programming$queues.coverage" NAME="queues Coverage Results" MODIFIED="1759094059986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Project3_4$diff_tools.coverage" NAME="diff_tools Coverage Results" MODIFIED="1759729766393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_HOME_DIR$/plugins/python-ce/helpers/pycharm/teamcity" />
-    <SUITE FILE_PATH="coverage/Project3_4$.coverage" NAME=" Coverage Results" MODIFIED="1759777341939" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Project3_4$test.coverage" NAME="test Coverage Results" MODIFIED="1759729278888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Project3$.coverage" NAME=" Coverage Results" MODIFIED="1759105561879" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BUS449_Project3_Procedural_Programming$queues_tests.coverage" NAME="queues_tests Coverage Results" MODIFIED="1759789181688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
