@@ -41,7 +41,6 @@ def calc_wqk_mmc(k, lamda, mu, c=1):
     #TODO pt 2: It looks look you misread the formula and read Lq as lamda,,, which means you need 2 lamdas
     # a lamda aggregate and a lamda k; good news: calc_lq_mmc aggregates lamda for you so you can just pass lamda in
     # as an argument
-
     # I lied, you do not need a lamda_k. do not worry about lamda_k
     Numerator = (1 - rho) * lamda
 
