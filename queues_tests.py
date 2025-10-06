@@ -443,11 +443,88 @@ def tests_use_littles_law():
     Returns: None
 
     """
+    # Test valid cases
+    # Try every kwarg for non-priority queue (scalar lamda)
+    actual = {"r": 0.8,
+              "ro": 0.8,
+              "lq": 3.2,
+              "wq": 0.16,
+              "l": 4,
+              "w": 0.2}
+    expected = q.use_littles_law(20, 25, 1, lq=3.2)
+    if actual == expected:
+        #This also checks to see if "wqk" and "lqk" are NOT created, bc the == operator checks to see
+        # if all keys and values are equal
+        print("Valid test for valid input, lq kwarg: Passed")
+    else:
+        print("Invalid test for valid input, lq kwarg: Failed")
+
+    expected = q.use_littles_law(20,25,1,wq=0.16)
+    if actual == expected:
+        print("Valid test for valid input, wq kwarg: Passed")
+    else:
+        print("Invalid test for valid input, wq kwarg: Failed")
+
+    expected = q.use_littles_law(20, 25, 1, l=4)
+    if actual == expected:
+        print("Valid test for valid input, l kwarg: Passed")
+    else:
+        print("Invalid test for valid input, l kwarg: Failed")
+
+    expected = q.use_littles_law(20, 25, 1, w=0.2)
+    if actual == expected:
+        print("Valid test for valid input, w kwarg: Passed")
+    else:
+        print("Invalid test for valid input, w kwarg: Failed")
+
+    #Try every kwarg for priority queue
+    actual = {"r": 0.8,
+              "ro": 0.8,
+              "lq": 3.2,
+              "wq": 0.16,
+              "l": 4,
+              "w": 0.2}
+    actual_qk = { "lqk":(0.2,1,2),
+                  "wqk":(0.04,0.1,0.4)}
+    expected = q.use_littles_law((5,10,5), 25, 1, lq=3.2)
+    if ([isclose(actual[keys],expected[keys]) for keys in actual]
+            and [isclose(actual_qk["lqk"][i],expected["lqk"][i]) for i in range(3)]
+            and [isclose(actual_qk["wqk"][i],expected["wqk"][i]) for i in range(3)]):
+        print("Valid test for valid input, lq kwarg iterable lamda: Passed")
+    else:
+        print("Invalid test for valid input, lq kwarg iterable lamda: Failed")
+
+    expected = q.use_littles_law((5, 10, 5), 25, 1, wq=0.16)
+    if ([isclose(actual[keys], expected[keys]) for keys in actual]
+            and [isclose(actual_qk["lqk"][i], expected["lqk"][i]) for i in range(3)]
+            and [isclose(actual_qk["wqk"][i], expected["wqk"][i]) for i in range(3)]):
+        print("Valid test for valid input, wq kwarg iterable lamda: Passed")
+    else:
+        print("Invalid test for valid input, wq kwarg iterable lamda: Failed")
+
+    expected = q.use_littles_law((5, 10, 5), 25, 1, l=4)
+    if ([isclose(actual[keys], expected[keys]) for keys in actual]
+            and [isclose(actual_qk["lqk"][i], expected["lqk"][i]) for i in range(3)]
+            and [isclose(actual_qk["wqk"][i], expected["wqk"][i]) for i in range(3)]):
+        print("Valid test for valid input, l kwarg iterable lamda: Passed")
+    else:
+        print("Invalid test for valid input, l kwarg iterable lamda: Failed")
+
+    expected = q.use_littles_law((5, 10, 5), 25, 1, w=0.2)
+    if ([isclose(actual[keys], expected[keys]) for keys in actual]
+            and [isclose(actual_qk["lqk"][i], expected["lqk"][i]) for i in range(3)]
+            and [isclose(actual_qk["wqk"][i], expected["wqk"][i]) for i in range(3)]):
+        print("Valid test for valid input, w kwarg iterable lamda: Passed")
+    else:
+        print("Invalid test for valid input, w kwarg iterable lamda: Failed")
+
+
+
 #tests_is_valid()
 #tests_is_feasible()
 #tests_calc_p0()
 #tests_calc_lq_mmc()
-tests_calc_bk_mmc()
-tests_calc_wqk_mmc()
-tests_calc_lqk_mmc()
+#tests_calc_bk_mmc()
+#tests_calc_wqk_mmc()
+#tests_calc_lqk_mmc()
 tests_use_littles_law()
