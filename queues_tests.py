@@ -1,8 +1,6 @@
 import math
 from math import isclose, isnan
 import queues as q
-from queues import use_littles_law
-
 
 #queues_tests.py
 #Test valid and invalid cases for queues.py
@@ -827,11 +825,11 @@ def tests_use_littles_law():
         print("Invalid test for infeasible input, small mu: Failed")
 
 
-#tests_is_valid()
-#tests_is_feasible()
-#tests_calc_p0()
-#tests_calc_lq_mmc()
-#tests_calc_bk_mmc()
+tests_is_valid()
+tests_is_feasible()
+tests_calc_p0()
+tests_calc_lq_mmc()
+tests_calc_bk_mmc()
 tests_calc_wqk_mmc()
-#tests_calc_lqk_mmc()
-#tests_use_littles_law()
+tests_calc_lqk_mmc()
+tests_use_littles_law()
