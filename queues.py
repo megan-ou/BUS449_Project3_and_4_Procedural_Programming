@@ -228,7 +228,7 @@ def use_littles_law(lamda, mu, c=1, **kwargs):
         # writing code to check to see if there are other valid kwargs if the first kwarg is an invalid value, but I
         # think that I might leave that task for if I have more time at the end.
         return math.nan
-    if not (isinstance(kwargs[first_kwarg], Number) and kwargs[first_kwarg] > 0):
+    if not (isinstance(first_kwarg, Number) and first_kwarg > 0):
         return -math.inf
 
     #Initialize dictionary with empty values. Initialize the dictionary so it is easier to assign values
