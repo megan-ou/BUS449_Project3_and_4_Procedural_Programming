@@ -212,7 +212,7 @@ def calc_bk_mmc(k, lamda, mu, c=1):
 def calc_wqk_mmc(k, lamda, mu, c=1):
     """
     Calculates wqk, the average time spent waiting in queue for customers in class k. Uses the formula:
-    = ((1-ρ) * W_q)/(B_(k-1) * B_k ) = ((1-ρ) L_q)/(λB_(k-1) B_k )
+    = ((1-ρ) * W_q)/(B_(k-1) * B_k ) = ((1-ρ) * L_q)/(λ * B_(k-1) * B_k )
     Args:
         k (number): priority class number
         lamda (number): arrival rate of customers per time interval (scalar or multivalued)
@@ -222,32 +222,33 @@ def calc_wqk_mmc(k, lamda, mu, c=1):
     Returns: the average time spent in queue for a specific priority class k (wqk)
 
     """
-    if not is_valid(lamda, mu, c):
+    if not is_valid(lamda, mu, c) or k < 0:
         return math.nan
 
     if not is_feasible(lamda, mu, c):
         return math.inf
 
-    if k > len(lamda) or k < 0:
-        #k cannot be greater than the length of lamda because then we would be referencing indexes that
-        # do not exist
-        return -math.inf
-
     if isiterable(lamda):
+        if k > len(lamda):
+            # k cannot be greater than the length of lamda because then we would be referencing indexes that
+            # do not exist
+            return -math.nan
         #extract lamda at the kth - 1 interval since indexing starts at 0
         lamda_k = lamda[k - 1]
+        lamda_agg = sum(lamda)
     else:
         lamda_k = lamda
+        lamda_agg = lamda
 
     lq = calc_lq_mmc(lamda, mu, c)
-    rho = lamda_k / (mu * c)
+    rho = lamda_agg / (mu * c)
 
     bk = calc_bk_mmc(k, lamda, mu, c)
     bk_1 = calc_bk_mmc(k - 1, lamda, mu, c)
 
     numerator = (1 - rho) * lq
 
-    denominator = lamda_k * (bk_1) * bk
+    denominator = lamda_agg * bk_1 * bk
 
     wqk = numerator / denominator
 
