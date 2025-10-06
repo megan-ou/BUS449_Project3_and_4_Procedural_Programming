@@ -272,7 +272,48 @@ def tests_calc_bk_mmc():
     Returns: None
 
     """
+    #test for valid inputs
+    #single lamda
+    expected = .6
+    actual = q.calc_bk_mmc(1, 2, 5, 1)
+    if isclose(expected, actual):
+        print("Valid test for valid input, single server & single lamda: Passed")
+    else:
+        print("Invalid test for valid input, single server & single lamda: Failed")
 
+    #tests multiple lamda
+    expected = .8
+    actual = q.calc_bk_mmc(1,(1,1), 5, 1)
+    if isclose(expected, actual):
+        print("Valid test for valid input, single server & multiple lamda: Passed")
+    else:
+        print("Invalid test for valid input, single server & multiple lamda: Failed")
+
+    #test k not a number
+    expected = math.nan
+    actual = q.calc_bk_mmc("hi", 12, 1, 1)
+    if math.isnan(actual):
+        print("Valid test for valid k not a number: Passed")
+    else:
+        print("Invalid test for valid k not a number: Failed")
+
+    #test k = -1
+    expected = math.nan
+    actual = q.calc_bk_mmc(-1, 12, 1, 1)
+    if math.isnan(actual):
+        print("Valid test for invalid k = -1: Passed")
+    else:
+        print("Invalid test for invalid k = -1: Failed")
+
+    #test k = 1
+    expected = 1
+    actual = q.calc_bk_mmc(-1, 5, 10, 1)
+    if isclose(expected, actual):
+        print("Valid test for valid k = 0: Passed")
+    else:
+        print("Invalid test for valid k = 0: Failed")
+
+    #
 def tests_calc_wqk_mmc():
     """
     Tests calc_wqk_mmc(k, lamda, mu, c=1) function in queues.py
