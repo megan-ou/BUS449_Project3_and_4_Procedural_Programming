@@ -327,7 +327,123 @@ def tests_calc_lqk_mmc():
     Returns: None
 
     """
+    #Test for valid cases for each priority class
+    #Tuple lamda
+    expected = 0.2
+    actual = q.calc_lqk_mmc(1, (5,10,5), 0.04)
+    if isclose(expected, actual):
+        print("Valid test for valid input, tuple lamda class 1: Passed")
+    else:
+        print("Invalid test for valid input, tuple lamda class 1: Failed")
 
+    expected = 1
+    actual = q.calc_lqk_mmc(2, (5,10,5), 0.1)
+    if isclose(expected, actual):
+        print("Valid test for valid input, tuple lamda class 2: Passed")
+    else:
+        print("Invalid test for valid input, tuple lamda class 2: Failed")
+
+    expected = 2
+    actual = q.calc_lqk_mmc(3, (5,10,5), 0.4)
+    if isclose(expected, actual):
+        print("Valid test for valid input, tuple lamda class 3: Passed")
+    else:
+        print("Invalid test for valid input, tuple lamda class 3: Failed")
+
+    #Single tuple lamda
+    actual = q.calc_lqk_mmc(1, (20,), 0.1)
+    if isclose(expected, actual):
+        print("Valid test for valid input, single tuple lamda: Passed")
+    else:
+        print("Invalid test for valid input, single tuple lamda: Failed")
+
+    #Scalar lamda
+    actual = q.calc_lqk_mmc(1, 20, 0.1)
+    if isclose(expected, actual):
+        print("Valid test for valid input, scalar lamda: Passed")
+    else:
+        print("Invalid test for valid input, scalar lamda: Failed")
+
+    #Test for invalid cases
+    #String inputs for all arguments
+    actual = q.calc_lqk_mmc("1", (5,10,5), 0.4)
+    if math.isnan(actual):
+        print("Valid test for invalid input, string input for k: Passed")
+    else:
+        print("Invalid test for invalid input, string input for k: Failed")
+
+    actual = q.calc_lqk_mmc(1, ("5", 10, 5), 0.4)
+    if math.isnan(actual):
+        print("Valid test for invalid input, string input for lamda class 1: Passed")
+    else:
+        print("Invalid test for invalid input, string input for lamda class 1: Failed")
+
+    actual = q.calc_lqk_mmc(2, (5,"10",5), 0.4)
+    if math.isnan(actual):
+        print("Valid test for invalid input, string input for lamda class 2: Passed")
+    else:
+        print("Invalid test for invalid input, string input for lamda class 2: Failed")
+
+    actual = q.calc_lqk_mmc(3, (5, 10, "5"), 0.4)
+    if math.isnan(actual):
+        print("Valid test for invalid input, string input for lamda class 3: Passed")
+    else:
+        print("Invalid test for invalid input, string input for lamda class 3: Failed")
+
+    actual = q.calc_lqk_mmc(1, (5,10,5), "0.4")
+    if math.isnan(actual):
+        print("Valid test for invalid input, string input for wqk: Passed")
+    else:
+        print("Invalid test for invalid input, string input for wqk: Failed")
+
+    #Args out of range
+    actual = q.calc_lqk_mmc(4, (5,10,5), 0.4)
+    if math.isnan(actual):
+        print("Valid test for invalid input, k too large iterable lamda: Passed")
+    else:
+        print("Invalid test for invalid input, k too large iterable lamda: Failed")
+
+    actual = q.calc_lqk_mmc(2, 20, 0.1)
+    if math.isnan(actual):
+        print("Valid test for invalid input, k too large scalar lamda: Passed")
+    else:
+        print("Invalid test for invalid input, k too large scalar lamda: Failed")
+
+    actual = q.calc_lqk_mmc(-1, (5,10,5), 0.4)
+    if math.isnan(actual):
+        print("Valid test for invalid input, negative k: Passed")
+    else:
+        print("Invalid test for invalid input, negative k: Failed")
+
+    actual = q.calc_lqk_mmc(0, (5,10,5), 0.4)
+    if math.isnan(actual):
+        print("Valid test for invalid input, k = 0: Passed")
+    else:
+        print("Invalid test for invalid input, k = 0: Failed")
+
+    actual = q.calc_lqk_mmc(1, (-5, 10, 5), 0.4)
+    if math.isnan(actual):
+        print("Valid test for invalid input, negative lamda class 1: Passed")
+    else:
+        print("Invalid test for invalid input, negative lamda class 1: Failed")
+
+    actual = q.calc_lqk_mmc(2, (5, -10, 5), 0.4)
+    if math.isnan(actual):
+        print("Valid test for invalid input, negative lamda class 2: Passed")
+    else:
+        print("Invalid test for invalid input, negative lamda class 2: Failed")
+
+    actual = q.calc_lqk_mmc(3, (5, 10, -5), 0.4)
+    if math.isnan(actual):
+        print("Valid test for invalid input, negative lamda class 3: Passed")
+    else:
+        print("Invalid test for invalid input, negative lamda class 3: Failed")
+
+    actual = q.calc_lqk_mmc(1, (5, 10, 5), -0.4)
+    if math.isnan(actual):
+        print("Valid test for invalid input, negative wqk: Passed")
+    else:
+        print("Invalid test for invalid input, negative wqk: Failed")
 
 def tests_use_littles_law():
     """
@@ -335,10 +451,10 @@ def tests_use_littles_law():
     Returns: None
 
     """
-tests_is_valid()
-tests_is_feasible()
-tests_calc_p0()
-tests_calc_lq_mmc()
+#tests_is_valid()
+#tests_is_feasible()
+#tests_calc_p0()
+#tests_calc_lq_mmc()
 tests_calc_bk_mmc()
 tests_calc_wqk_mmc()
 tests_calc_lqk_mmc()

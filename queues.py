@@ -234,6 +234,10 @@ def calc_wqk_mmc(k, lamda, mu, c=1):
             return math.nan
         lamda_agg = sum(lamda)
     else:
+        if k != 1:
+            # This part of the code not represented in flow charts because it was added as a last minute check, but
+            # k should not be any number other than 1 lamda is a scalar.
+            return math.nan
         lamda_agg = lamda
 
     #Calculate values of Lq and rho with aggregate lamda values - not sure why but the formula does call for this
@@ -274,6 +278,10 @@ def calc_lqk_mmc(k, lamda, wqk):
         #Take k-1 since indexing starts at 0 and k classes start at 1.
         lamda_k = lamda[k-1]
     else:
+        if k != 1:
+            # This part of the code not represented in flow charts because it was added as a last minute check, but
+            # k should not be any number other than 1 lamda is a scalar.
+            return math.nan
         lamda_k = lamda
 
     if not isinstance(lamda_k, Number) or not isinstance(wqk, Number) or wqk <= 0 or lamda_k <= 0:
