@@ -232,7 +232,7 @@ def calc_wqk_mmc(k, lamda, mu, c=1):
         if k > len(lamda):
             # k cannot be greater than the length of lamda because then we would be referencing indexes that
             # do not exist
-            return -math.nan
+            return math.nan
         #extract lamda at the kth - 1 interval since indexing starts at 0
         lamda_k = lamda[k - 1]
         lamda_agg = sum(lamda)
