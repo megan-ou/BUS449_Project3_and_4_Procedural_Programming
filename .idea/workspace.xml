@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5df45104-9ca8-4aed-a2ae-7d6599389d7f" name="Changes" comment="bk and wqk push">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="5df45104-9ca8-4aed-a2ae-7d6599389d7f" name="Changes" comment="bk test progress again">
       <change beforePath="$PROJECT_DIR$/queues_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/queues_tests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -170,7 +169,7 @@
       <workItem from="1759646697360" duration="329000" />
       <workItem from="1759647039634" duration="2497000" />
       <workItem from="1759703249245" duration="463000" />
-      <workItem from="1759770939180" duration="7899000" />
+      <workItem from="1759770939180" duration="8587000" />
     </task>
     <task id="LOCAL-00001" summary="MO - Initial Commit">
       <option name="closed" value="true" />
@@ -244,7 +243,23 @@
       <option name="project" value="LOCAL" />
       <updated>1759703289249</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="bk test progress">
+      <option name="closed" value="true" />
+      <created>1759789278109</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1759789278109</updated>
+    </task>
+    <task id="LOCAL-00011" summary="bk test progress again">
+      <option name="closed" value="true" />
+      <created>1759789343682</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1759789343682</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,13 +284,16 @@
     <MESSAGE value="MO - Imported Dr. Mitchell's unit tests." />
     <MESSAGE value="." />
     <MESSAGE value="bk and wqk push" />
-    <option name="LAST_COMMIT_MESSAGE" value="bk and wqk push" />
+    <MESSAGE value="bk test progress" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'" />
+    <MESSAGE value="bk test progress again" />
+    <option name="LAST_COMMIT_MESSAGE" value="bk test progress again" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Project3$queues.coverage" NAME="queues Coverage Results" MODIFIED="1759105407060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/BUS449_Project3_Procedural_Programming$queues.coverage" NAME="queues Coverage Results" MODIFIED="1759788800059" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Project3$queues_tests.coverage" NAME="queues_tests Coverage Results" MODIFIED="1759104744348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Project3$.coverage" NAME=" Coverage Results" MODIFIED="1759105561879" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/BUS449_Project3_Procedural_Programming$queues_tests.coverage" NAME="queues_tests Coverage Results" MODIFIED="1759789181688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BUS449_Project3_Procedural_Programming$queues_tests.coverage" NAME="queues_tests Coverage Results" MODIFIED="1759789870083" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
