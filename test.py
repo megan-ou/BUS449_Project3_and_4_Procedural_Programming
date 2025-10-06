@@ -39,7 +39,8 @@ def calc_wqk_mmc(k, lamda, mu, c=1):
 
     #TODO: rho is a variable that has not been defined anywhere
     #TODO pt 2: It looks look you misread the formula and read Lq as lamda,,, which means you need 2 lamdas
-    # a lamda aggregate and a lamda k
+    # a lamda aggregate and a lamda k; good news: calc_lq_mmc aggregates lamda for you so you can just pass lamda in
+    # as an argument
     Numerator = (1 - rho) * lamda
 
     #TODO: bk should be lowercased. It is also an undefined variable. You need to call the function that you wrote
