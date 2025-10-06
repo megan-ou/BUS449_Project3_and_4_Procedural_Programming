@@ -321,7 +321,7 @@ def tests_calc_bk_mmc():
     else:
         print("Invalid test for lamda iterable: Failed")
 
-    #test k < len(lamda)
+    #test k > len(lamda)
     expected = math.nan
     actual = q.calc_bk_mmc(5, 2,5,1)
     if math.isnan(actual):
@@ -343,6 +343,44 @@ def tests_calc_wqk_mmc():
     Returns: None
 
     """
+    #test k < 0
+    expected = math.nan
+    actual = q.calc_wqk_mmc(-1, 2, 5, 1)
+    if math.isnan(actual):
+        print("Valid test for k < 0: Passed")
+    else:
+        print("Invalid test for k < 0: Failed")
+
+    #test for valid inputs
+    expected = .16
+    actual = q.calc_wqk_mmc(1, 20, 25, 1)
+    if expected == actual:
+        print("Valid test for valid inputs: Passed")
+    else:
+        print("Invalid test for valid inputs: Failed")
+
+    # test for invalid cases
+    # check to see if is_valid is passed to is_feasible
+    actual = q.calc_wqk_mmc(2, -12, 1, 1)
+    if math.isnan(actual):
+        print("Valid test for invalid input: Passed")
+    else:
+        print("Invalid test for invalid input: Failed")
+
+    #test k > len(lamda)
+    actual = q.calc_wqk_mmc(5, 2, 5, 1)
+    if math.isnan(actual):
+        print("Valid test for k > len(lamda): Passed")
+    else:
+        print("Invalid test for k > len(lamda): Failed")
+
+    #test k != 1
+    expected = math.nan
+    actual = q.calc_wqk_mmc(5, 2,5,1)
+    if math.isnan(actual):
+        print("Valid test for k != 1: Passed")
+    else:
+        print("Invalid test for k != 1: Failed")
 
 def tests_calc_lqk_mmc():
     """

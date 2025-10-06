@@ -229,7 +229,7 @@ def calc_wqk_mmc(k, lamda, mu, c=1):
 
     if isiterable(lamda):
         if k > len(lamda):
-            # k cannot be greater than the length of lamda because then we would be referencing indexes that
+            # k cannot be greater than the length of lamda /because then we would be referencing indexes that
             # do not exist
             return math.nan
         lamda_agg = sum(lamda)
